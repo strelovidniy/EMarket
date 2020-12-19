@@ -14,11 +14,11 @@
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.Password, "Enter password")<br />
-                @Html.TextBoxFor(m => m.Password)<br />
+                @Html.TextBoxFor(m => m.Password, new {type="password"})<br />
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.ConfirmPassword, "Confirm password")<br />
-                @Html.TextBoxFor(m => m.ConfirmPassword)<br />
+                @Html.TextBoxFor(m => m.ConfirmPassword, new {type="password"})<br />
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.FirstName, "First Name")<br />
