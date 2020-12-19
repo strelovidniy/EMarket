@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml.Controls;
 
@@ -15,7 +16,14 @@ namespace DesktopApp
         public async void Greeting()
         {
             var mediaElement = new MediaElement();
-            var stream = await new SpeechSynthesizer().SynthesizeTextToStreamAsync("Welcome!");
+            var stream = await new SpeechSynthesizer{ 
+                Voice = (
+                    from voice in SpeechSynthesizer.AllVoices
+                    where voice.Gender == VoiceGender.Female
+                    select voice
+                ).FirstOrDefault() ?? SpeechSynthesizer.DefaultVoice
+            }.SynthesizeTextToStreamAsync("Welcome!");
+
             mediaElement.SetSource(stream, stream.ContentType);
             mediaElement.Play();
         }
