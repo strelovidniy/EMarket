@@ -14,7 +14,8 @@ namespace EMarket.Models
         public int CategoryId { get; set; }
         public Category  Category { get; set; }
         public decimal Price { get; set; }
-
+        public int SellerId { get; set; }
+        public Seller Seller { get; set; }
         public List<ProductOrder> ProductOrder { get; set; } = new List<ProductOrder>();
     }
 }
