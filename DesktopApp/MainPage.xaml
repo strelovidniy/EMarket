@@ -8,8 +8,25 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="AliceBlue">
-        <WebView x:Name="HackatonWebView" Source="https://emarketua.azurewebsites.net/" />
+    <Grid x:Name="ButtonBackground" Background="DarkGreen" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="451*"/>
+            <RowDefinition Height="49*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <WebView x:Name="HackatonWebView" Source="https://emarketua.azurewebsites.net/" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
+        <Rectangle Height="50" Stroke="Black" VerticalAlignment="Top" Width="1518" Fill="#66000000" Grid.ColumnSpan="2" Margin="0,48,-18,0" Grid.Row="1"/>
+
+        <Button x:Name="BackButton" Content="Back"
+                VerticalAlignment="Stretch" Height="50" ClickMode="Press" 
+                FontSize="30" Foreground="White" Background="#59000000" Click="BackButton_Click" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,48,0,0"/>
+
+        <Button x:Name="ForwardButton" Content="Forward"
+                VerticalAlignment="Stretch" Height="50" ClickMode="Press" 
+                FontSize="30" Foreground="White" Background="#59000000" Click="ForwardButton_Click"  HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Margin="0,48,0,0" />
     </Grid>
 </Page>

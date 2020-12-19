@@ -21,5 +21,21 @@ namespace DesktopApp
             mediaElement.SetSource(stream, stream.ContentType);
             mediaElement.Play();
         }
+
+        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (HackatonWebView.CanGoBack)
+            {
+                HackatonWebView.GoBack();
+            }
+        }
+
+        private void ForwardButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            if (HackatonWebView.CanGoForward)
+            {
+                HackatonWebView.GoForward();
+            }
+        }
     }
 }
