@@ -1,4 +1,5 @@
-﻿using EMarket.Models;
+﻿using System.Linq;
+using EMarket.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -10,8 +11,11 @@ namespace EMarket.Controllers
         public IActionResult AddItem(int id)
         {
             Cart cart;
-            //TODO: add get by id from database 
-            var product = new Product();
+            Product product;
+            using (var db = new AppContext())
+            {
+                product = db.Products.FirstOrDefault(p => p.Id == id);
+            }
             if (!HttpContext.Session.TryGetCart(out cart))
             {
                cart = new Cart();
@@ -25,8 +29,9 @@ namespace EMarket.Controllers
             {
                 cart.Items[id] = 1;
             }
-
-            cart.Amount += product.Price;
+            
+            if(product!=null)
+                cart.Amount += product.Price;
 
             HttpContext.Session.Set(cart);
 
