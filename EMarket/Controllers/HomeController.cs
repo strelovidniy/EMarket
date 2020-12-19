@@ -25,15 +25,6 @@ namespace EMarket.Controllers
             return View();
         }
         
-        public IActionResult BuyerRegistration()
-        {
-            return View();
-        }
-        public IActionResult SellerRegistration()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
