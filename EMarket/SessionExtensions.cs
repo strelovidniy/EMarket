@@ -23,7 +23,7 @@ namespace EMarket
                     writter.Write(item.Key);
                     writter.Write(item.Value);
                 }
-                writter.Write(value.Amount);
+                writter.Write(value.TotalPrice);
                 session.Set(key, stream.ToArray());
             }
         }
@@ -47,7 +47,7 @@ namespace EMarket
                         value.Items.Add(productId, count);
                     }
 
-                    value.Amount = reader.ReadDecimal();
+                    value.TotalPrice = reader.ReadDecimal();
                     
                     return true;
                 }
