@@ -23,29 +23,33 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BuyerRegistration">Sign up for buyers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SellerRegistration">Sign up for seller</a>
                         </li>
                     </ul>
                 </div>
             </div>
+                      <span class="navbar-text ml-auto">
+                                @{
+                                    Cart cart;
+                                    if (!Context.Session.TryGetCart(out cart))
+                                    {
+                                        cart = new Cart();
+                                    }
+                                    if (cart.Items.Count ==0)
+                                    {
+                                        @:Cart is empty
+                                    }
+                                    else
+                                    {
+                                        @:Products @cart.Items.Count for price @cart.Amount
+                                    }
+                                }
+                            </span>
         </nav>
-           <span class="navbar-text ml-auto">
-                    @{
-                        Cart cart;
-                        if (!Context.Session.TryGetCart(out cart))
-                        {
-                            cart = new Cart();
-                        }
-                        if (cart.Items.Count ==0)
-                        {
-                            @:Cart is empty
-                        }
-                        else
-                        {
-                            @:Products @cart.Items.Count for price @cart.Amount
-                        }
-                    }
-                </span>
+ 
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -55,7 +59,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - EMarket - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - EMarket - <a asp-area="" asp-controller="Home" asp-action="BuyerRegistration">Sign up fo buyers</a><br/>
+            <a asp-area="" asp-controller="Home" asp-action="BuyerRegistration">Sign up for sellers</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

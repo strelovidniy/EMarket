@@ -16,10 +16,16 @@ namespace EMarket.Models
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductOrder> ProductOrders { get; set; }
+        public DbSet<Destination> Destinations { get; set; }
+        public DbSet<Delivery> Deliveries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<ProductOrder>().HasKey(order => new { order.OrderId, order.ProductId });
+            modelBuilder.Entity<ProductOrder>().HasOne(po => po.Order).WithMany(o => o.ProductOrder)
+                .HasForeignKey(po => po.OrderId);
+            modelBuilder.Entity<ProductOrder>().HasOne(po => po.Product).WithMany(p => p.ProductOrder)
+                .HasForeignKey(po => po.ProductId);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

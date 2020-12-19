@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using EMarket.ViewModels;
 
 namespace EMarket.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,8 +24,12 @@ namespace EMarket.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        
+        public IActionResult BuyerRegistration()
+        {
+            return View();
+        }
+        public IActionResult SellerRegistration()
         {
             return View();
         }

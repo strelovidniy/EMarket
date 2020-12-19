@@ -1,8 +1,15 @@
-﻿@model TModel
+﻿@model Product
 
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewData["Title"] = Model.Name;
 }
 
-<h2>title</h2>
+
+<h1>@Model.Name</h1>
+<p><strong>@Model.Category</strong></p>
+<p>@Model.Description</p>
+<p>Price <strong>@Model.Price</strong></p>
+<form action="@Url.Action("AddItem", "Cart")" method="post">
+    <input type="hidden" name="Id" value="@Model.Id"/>
+    <button class="btn btn-outline-success" type="submit" >AddItem to the cart</button>
+</form>
