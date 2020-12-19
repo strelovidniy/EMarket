@@ -32,21 +32,22 @@ namespace EMarket.Controllers
         public async Task<IActionResult> GoogleResponse()
         {
             var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var claims = result.Principal?.Identities.FirstOrDefault()?.Claims.
-                Select(claims => new { claims.Type, claims.Value });
-
-            var googleAuthData = claims.ToDictionary(
-                key =>
-                {
-                    var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
-                    return splitStrings[^1];
-                },
-                value => value.Value);
-
-            await using (var dbContext = new AppContext())
+            var claims = result.Principal?.Identities.FirstOrDefault()?.Claims
+                .ToDictionary(k => k.Type, v => v.Value);
+            await using (var db = new AppContext())
             {
-                //TODO: Таня зроби шось пліз :)
+                Buyer user = await db.Buyers
+                    .FirstOrDefaultAsync(p => p.Email == claims[ClaimTypes.Email]);
+                if (user == null)
+                {
+                    await db.Buyers.AddAsync(new Buyer()
+                    {
+                        Email = claims[ClaimTypes.Email],
+                        FirstName = claims[ClaimTypes.GivenName],
+                        LastName = claims[ClaimTypes.Surname],
+                        Password = claims[ClaimTypes.Sid]
+                    });
+                }
             }
 
             return RedirectToAction("Index", "Home");
@@ -76,7 +77,8 @@ namespace EMarket.Controllers
                 }
                 else
                 {
-                    Seller user = await db.Sellers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    Seller user = await db.Sellers.FirstOrDefaultAsync(u => u.Email == model.Email
+                                                                            && u.Password == model.Password);
                     if (user != null)
                     {
                         await AuthenticateSeller(user);
