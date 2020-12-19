@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace EMarket.Models
 {
-    public class Buyer
+    public class LoginModel
     {
-        public int Id { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        [Required]
-        public string LastName { get; set; }
-
-        [EmailAddress]
+        [Required(ErrorMessage = "Не указан Email")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Не указан пароль")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
-        public List<Order> Orders { get; set; }
     }
 }
