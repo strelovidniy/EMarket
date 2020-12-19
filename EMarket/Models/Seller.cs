@@ -13,6 +13,9 @@ namespace EMarket.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
-        
+        public string CompanyName { get; set; }
+        public string City { get; set; }
+        public List<Product> Products { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

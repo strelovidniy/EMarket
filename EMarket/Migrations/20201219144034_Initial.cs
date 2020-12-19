@@ -2,7 +2,7 @@
 
 namespace EMarket.Migrations
 {
-    public partial class ManyToMany : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,9 +12,10 @@ namespace EMarket.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,7 +42,9 @@ namespace EMarket.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Duration = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -69,8 +72,9 @@ namespace EMarket.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    CompanyName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,7 +90,8 @@ namespace EMarket.Migrations
                     DeliveryId = table.Column<int>(nullable: false),
                     DestinationId = table.Column<int>(nullable: false),
                     TotalPrice = table.Column<decimal>(nullable: false),
-                    BuyerId = table.Column<int>(nullable: false)
+                    BuyerId = table.Column<int>(nullable: false),
+                    SellerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,6 +114,12 @@ namespace EMarket.Migrations
                         principalTable: "Destinations",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Sellers_SellerId",
+                        column: x => x.SellerId,
+                        principalTable: "Sellers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,7 +132,8 @@ namespace EMarket.Migrations
                     Description = table.Column<string>(nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     Price = table.Column<decimal>(nullable: false),
-                    SellerId = table.Column<int>(nullable: false)
+                    SellerId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -145,7 +157,9 @@ namespace EMarket.Migrations
                 columns: table => new
                 {
                     OrderId = table.Column<int>(nullable: false),
-                    ProductId = table.Column<int>(nullable: false)
+                    ProductId = table.Column<int>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,14 +168,12 @@ namespace EMarket.Migrations
                         name: "FK_ProductOrders_Orders_OrderId",
                         column: x => x.OrderId,
                         principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_ProductOrders_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -178,6 +190,11 @@ namespace EMarket.Migrations
                 name: "IX_Orders_DestinationId",
                 table: "Orders",
                 column: "DestinationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_SellerId",
+                table: "Orders",
+                column: "SellerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductOrders_ProductId",

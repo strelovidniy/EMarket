@@ -20,7 +20,7 @@ namespace EMarket.Models
         public int SellerId { get; set; }
         public Seller Seller { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         public List<ProductOrder> ProductOrder { get; set; } = new List<ProductOrder>();
     }
