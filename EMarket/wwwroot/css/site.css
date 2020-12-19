@@ -75,7 +75,9 @@
     box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
     background: rgb(11,236,130);
     background: linear-gradient(149deg, rgba(11,236,130,1) 0%, rgba(6,145,80,1) 100%);
+    z-index: 100;
 }
+
 
 .register-wrapper form {
     display: flex;
@@ -102,4 +104,55 @@
 
 .register-wrapper input:focus {
     outline: none;
+}
+
+.seller {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.seller-body {
+    width: 200px;
+    object-fit: contain;
+    bottom: 0;
+
+}
+
+.carrot {
+    width: 50px;
+    position: absolute;
+    bottom: 310px;
+    left: 130px;
+    object-fit: contain;
+    transform: rotate(14deg);
+    animation: 2s carrot-fly infinite;
+}
+
+.seller-hand {
+    width: 64px;
+    position: absolute;
+    top: 84px;
+    left: 149px;
+    object-fit: contain;
+    animation: 2s seller-hand-anim infinite;
+    transform-origin: bottom left;
+}
+
+@keyframes seller-hand-anim {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);   
+    }
+}
+
+@keyframes carrot-fly {
+    5% {
+        left: 130px;
+    }
+    100% {
+        left: 500px;
+    }
 }
