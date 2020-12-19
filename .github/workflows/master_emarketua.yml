@@ -6,7 +6,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - emarketua
 on:
   push:
     branches:
-      - master/AndroidApp
+      - master
 
 jobs:
   build-and-deploy:
@@ -14,17 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0.x'
-
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
