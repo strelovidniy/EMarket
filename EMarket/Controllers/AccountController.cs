@@ -18,6 +18,7 @@ namespace EMarket.Controllers
     {
         Seller, Buyer
     }
+
     public class AccountController : Controller
     {
         [Route("~/account/google-signin")]
@@ -163,7 +164,8 @@ namespace EMarket.Controllers
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, buyer.FirstName+" "+buyer.LastName),
                 new Claim(ClaimTypes.Email, buyer.Email),
-                new Claim(ClaimTypes.Name, buyer.FirstName+" "+buyer.LastName),
+                new Claim(ClaimTypes.GivenName, buyer.FirstName),
+                new Claim(ClaimTypes.Surname, buyer.LastName),
                 new Claim(ClaimTypes.Role, "Buyer")
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
@@ -177,7 +179,8 @@ namespace EMarket.Controllers
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, seller.FirstName+" "+seller.LastName),
                 new Claim(ClaimTypes.Email, seller.Email),
-                new Claim(ClaimTypes.Name, seller.FirstName+" "+seller.LastName),
+                new Claim(ClaimTypes.GivenName, seller.FirstName),
+                new Claim(ClaimTypes.Surname, seller.LastName),
                 new Claim(ClaimTypes.Locality, seller.City),
                 new Claim(ClaimTypes.Role, "Seller")
             };
