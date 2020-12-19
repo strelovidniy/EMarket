@@ -14,9 +14,9 @@
 
 /* Common */
 .container {
-    width: 1040px;
-    max-width: 1040px;
-    min-width: 1040px;
+    width: 1240px;
+    max-width: 1240px;
+    min-width: 1240px;
     height: 100%;
 
     display: flex;
@@ -25,11 +25,23 @@
     align-items: center;
 }
 
+.navigation ul li {
+    display: inline-block;
+}
+
+.navigation ul li {
+    color: var(--secondary-blue);
+}
+
+
 /* Home page */
 .authentication-buttons-wrapper {
     margin-top: 2rem;
     width: 100%;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .button {
@@ -59,6 +71,11 @@
     cursor: pointer;
 }
 
+.register-seller-button {
+    color: var(--secondary-aqua)!important;
+    background-color: transparent;
+    cursor: pointer;
+}
 
 /* Register page */
 .fullscreen-wrapper {
@@ -122,11 +139,11 @@
 .carrot {
     width: 50px;
     position: absolute;
-    bottom: 310px;
-    left: 130px;
+    bottom: 300px;
+    left: 100px;
     object-fit: contain;
-    transform: rotate(14deg);
     animation: 2s carrot-fly infinite;
+    animation-delay: 1s;
 }
 
 .seller-hand {
@@ -149,12 +166,17 @@
 }
 
 @keyframes carrot-fly {
-    5% {
+    0% {
         left: 130px;
+        bottom: 300px;
+        transform: rotate(40deg);
+    }
+    50% {
+        bottom: 350px;
     }
     100% {
-        left: 500px;
+        left: 1000px;
+        bottom: 100px;
+        transform: rotate(760deg);
     }
 }
-
-/* Seller register */

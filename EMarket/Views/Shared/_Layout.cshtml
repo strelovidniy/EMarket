@@ -9,11 +9,31 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    @RenderBody()
+<header>
+    <div class="container">
+        <div class="authentication-buttons-wrapper">
+            <div class="navigation">
+                <ul>
+                    <li>Element 1</li>
+                </ul>
+            </div>
+            <div class="authentication-buttons">
+                <a href="/login" class="button login-button">
+                    login
+                    <img class="wheat-icon" src="icons/wheat.svg"/>
+                </a>
+                <a href="/buyer/register" class="button register-button">register</a>
+                <a href="/seller/register" class="button register-seller-button">register as a seller</a>
+
+            </div>
+        </div>
+    </div>
+</header>
+@RenderBody()
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
