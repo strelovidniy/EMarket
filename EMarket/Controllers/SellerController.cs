@@ -13,7 +13,6 @@ namespace EMarket.Controllers
     //[Authorize(Roles = "Seller")]
     public class SellerController : Controller
     {
-       
         public async Task<IActionResult> Index()
         {
             await using AppContext db = new AppContext();
@@ -23,15 +22,17 @@ namespace EMarket.Controllers
                 .Include(o => o.Destination)
                 .Include(o => o.ProductOrder)
                 .ThenInclude(po => po.Product).ToList();
-
             return View(orders);
-
         }
 
         [HttpGet]
         public async Task<IActionResult> AddProduct()
         {
-            return View();
+            await using AppContext db = new AppContext();
+            var categories = db.Categories.ToList();
+            ViewBag.Categories = categories;
+            
+            return View(new Product());
         }
 
         [HttpPost]
@@ -40,10 +41,12 @@ namespace EMarket.Controllers
             if (ModelState.IsValid)
             {
                 await using AppContext db = new AppContext();
-
+                product.SellerId = Int32.Parse(User.FindFirst("Id")?.Value ?? string.Empty);
+                await db.Products.AddAsync(product);
+                await db.SaveChangesAsync();
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

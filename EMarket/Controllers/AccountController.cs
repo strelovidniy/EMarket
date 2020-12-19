@@ -147,7 +147,7 @@ namespace EMarket.Controllers
                 new Claim("Id", seller.Id.ToString()),
                 new Claim(ClaimTypes.Email, seller.Email),
                 new Claim(ClaimTypes.Name, seller.FirstName+" "+seller.LastName),
-                new Claim("City", seller.City),
+                new Claim(ClaimTypes.Locality, seller.City),
                 new Claim(ClaimTypes.Role, "Seller")
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
