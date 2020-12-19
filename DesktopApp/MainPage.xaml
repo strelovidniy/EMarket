@@ -9,8 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="AliceBlue">
-        <WebView x:Name="HackatonWebView" Source="https://emarketua.azurewebsites.net/" 
-                 sScrollViewer.VerticalScrollBarVisibility="Disabled"
-                 ScrollViewer.VerticalScrollMode="Disabled"/>
+        <WebView x:Name="HackatonWebView" Source="https://emarketua.azurewebsites.net/" />
+
     </Grid>
 </Page>
