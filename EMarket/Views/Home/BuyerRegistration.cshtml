@@ -6,8 +6,26 @@
 
 @using (Html.BeginForm())
 {
+    <div class = "Form">
     @Html.LabelFor(m => m.FirstName, "Enter your name:")
     @Html.TextBoxFor(m => m.FirstName)
     @Html.LabelFor(m => m.LastName, "Enter your surname:")
     @Html.TextBoxFor(m => m.LastName)
+    </div>
 }
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<style>
+    .Form
+    {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+</body>
+</html>
