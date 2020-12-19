@@ -10,15 +10,21 @@ on:
 
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: windows-latest
+    container: '**/EMarket/*.csproj'
 
     steps:
     - uses: actions/checkout@master
 
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
 
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+      
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
