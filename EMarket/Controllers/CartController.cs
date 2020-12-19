@@ -1,7 +1,7 @@
 ﻿using EMarket.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Store.Web.Models;
+using Models;
 
 namespace EMarket.Controllers
 {

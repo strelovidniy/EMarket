@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using EMarket.Models;
 
-namespace Store.Web.Models
+namespace Models
 {
     public class Cart
     {
