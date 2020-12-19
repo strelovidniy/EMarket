@@ -162,7 +162,6 @@ namespace EMarket.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, buyer.FirstName+" "+buyer.LastName),
-                new Claim("Id", buyer.Id.ToString()),
                 new Claim(ClaimTypes.Email, buyer.Email),
                 new Claim(ClaimTypes.Name, buyer.FirstName+" "+buyer.LastName),
                 new Claim(ClaimTypes.Role, "Buyer")
@@ -177,7 +176,6 @@ namespace EMarket.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, seller.FirstName+" "+seller.LastName),
-                new Claim("Id", seller.Id.ToString()),
                 new Claim(ClaimTypes.Email, seller.Email),
                 new Claim(ClaimTypes.Name, seller.FirstName+" "+seller.LastName),
                 new Claim(ClaimTypes.Locality, seller.City),
@@ -191,7 +189,6 @@ namespace EMarket.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            var id = User.Identity;
             return RedirectToAction("Index", "Home");
         }
     }
