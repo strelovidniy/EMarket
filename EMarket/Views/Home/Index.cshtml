@@ -19,8 +19,24 @@
                      <button class="view-poster" type="submit">View</button>
                 </form>
             </div>
-
+            
         </div>
     }
 </main>
+
+<div class="container">
+    <div class="authentication-buttons-wrapper">
+        <div class="authentication-buttons">
+            <a asp-action="Login" asp-controller="Account" class="button login-button">
+                login
+                <img class="wheat-icon" src="icons/wheat.svg" />
+            </a>
+            <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">Register</a>
+        </div>
+    </div>
+    <footer>
+        <h2>Not a buyer?</h2>
+        <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">Sign up as a seller</a>
+    </footer>
+</div>
 

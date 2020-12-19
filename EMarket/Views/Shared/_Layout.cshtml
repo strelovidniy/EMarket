@@ -9,70 +9,32 @@
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EMarket</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RegisterAsBuyer">Sign up for buyers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="RegisterAsSeller">Sign up for seller</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Map" asp-action="PointsOfProduction">Production points</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-        <span class="navbar-text ml-auto">
-            @{
-                Cart cart;
-                if (!Context.Session.TryGetCart(out cart))
-                {
-                    cart = new Cart();
-                }
-                if (Context.Session.TryGetCart(out  cart) && cart.Items.Count > 0)
-                {
-                    <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a>
-                }
-                else
-                {
-                    @:Cart is empty
-                }
+<nav>
+    <span class="navbar-text ml-auto">
+        @{
+            Cart cart;
+            if (!Context.Session.TryGetCart(out cart))
+            {
+                cart = new Cart();
             }
-        </span>
-    </nav>
+            if (Context.Session.TryGetCart(out  cart) && cart.Items.Count > 0)
+            {
+                <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a>
+            }
+            else
+            {
+                @:Cart is empty
+            }
+        }
+    </span>
+</nav>
 
-</header>
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
+@RenderBody()
 
-<footer class="border-top footer text-muted">
-    <div class="container">
-        &copy; 2020 - EMarket - <a asp-area="" asp-controller="Account" asp-action="Register">Sign up fo buyers</a>
-        <a asp-area="" asp-controller="Account" asp-action="Register">Sign up for sellers</a>
-    </div>
-</footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false)
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

@@ -1,71 +1,160 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+* {
+    font-family: "Poppins";
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+/* Variables binding */
+:root {
+    --main-color: #07c26a;
+    --secondary-aqua: #12c5cf;
+    --secondary-blue: #067cba;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+
+/* Common */
+.container {
+    width: 1040px;
+    max-width: 1040px;
+    min-width: 1040px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Home page */
+.authentication-buttons-wrapper {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: right;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.button {
+    border: none;
+    padding: .5rem 2rem;
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+.button:hover {
+    text-decoration: none;
 }
 
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+.login-button {
+    margin-right: 1rem;
+    color: white!important;
+    background-color: var(--main-color);
+    border-radius: 30px;
 }
 
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
+.wheat-icon {
+    width: 30px;
+    height: 30px;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+.register-button {
+    color: var(--main-color) !important;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+
+/* Register page */
+.fullscreen-wrapper {
+    height: calc(100vh - 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+
+.register-wrapper {
+    padding: 2rem;
+    border-radius: 30px;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    background: rgb(11,236,130);
+    background: linear-gradient(149deg, rgba(11,236,130,1) 0%, rgba(6,145,80,1) 100%);
+    z-index: 100;
 }
+
+
+.register-wrapper form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 500px;
+}
+
+.register-wrapper label {
+    color: white;
+}
+
+.register-wrapper input {
+    padding: 0 .5rem;
+    font-size: .8rem;
+    width: 250px;
+    border: none;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 5px 16px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 5px 16px 5px rgba(0,0,0,0.15);
+}
+
+.register-wrapper input:focus {
+    outline: none;
+}
+
+.seller {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.seller-body {
+    width: 200px;
+    object-fit: contain;
+    bottom: 0;
+
+}
+
+.carrot {
+    width: 50px;
+    position: absolute;
+    bottom: 310px;
+    left: 130px;
+    object-fit: contain;
+    transform: rotate(14deg);
+    animation: 2s carrot-fly infinite;
+}
+
+.seller-hand {
+    width: 64px;
+    position: absolute;
+    top: 84px;
+    left: 149px;
+    object-fit: contain;
+    animation: 2s seller-hand-anim infinite;
+    transform-origin: bottom left;
+}
+
+@keyframes seller-hand-anim {
+    0%, 100% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(-15deg);   
+    }
+}
+
+@keyframes carrot-fly {
+    5% {
+        left: 130px;
+    }
+    100% {
+        left: 500px;
+    }
+}
+
+/* Seller register */
