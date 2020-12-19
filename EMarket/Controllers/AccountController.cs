@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,6 +20,38 @@ namespace EMarket.Controllers
     }
     public class AccountController : Controller
     {
+        [Route("google-signin")]
+        public IActionResult GoogleLogin()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
+
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        [Route("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var claims = result.Principal?.Identities.FirstOrDefault()?.Claims.
+                Select(claims => new { claims.Type, claims.Value });
+
+            var googleAuthData = claims.ToDictionary(
+                key =>
+                {
+                    var splitStrings = key.Type.Split('/', StringSplitOptions.RemoveEmptyEntries);
+                    return splitStrings[^1];
+                },
+                value => value.Value);
+
+            await using (var dbContext = new AppContext())
+            {
+                //TODO: Таня зроби шось пліз :)
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
