@@ -24,10 +24,7 @@ namespace EMarket
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
 
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                })
+            services.AddAuthentication()
                 .AddCookie(options =>
                 {
                     options.LoginPath = "/account/google-signin";
