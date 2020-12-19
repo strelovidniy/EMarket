@@ -16,6 +16,7 @@ namespace EMarket.Controllers
     public class AccountController : Controller
     {
         [HttpGet]
+        [Route("/login")]
         public IActionResult Login()
         {
             return View();
@@ -40,6 +41,7 @@ namespace EMarket.Controllers
             return View(model);
         }
 
+        [Route("/register")]
         [HttpGet]
         public IActionResult Register()
         {
@@ -65,7 +67,7 @@ namespace EMarket.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                    ModelState.AddModelError("", "Invalid login or password");
             }
             return View(model);
         }
