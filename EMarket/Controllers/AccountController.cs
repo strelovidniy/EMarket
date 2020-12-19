@@ -21,12 +21,13 @@ namespace EMarket.Controllers
     public class AccountController : Controller
     {
         [Route("~/account/google-signin")]
-        public IActionResult GoogleLogin()
-        {
-            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
-
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
-        }
+        public IActionResult GoogleLogin() => 
+            Challenge(
+                new AuthenticationProperties
+                {
+                    RedirectUri = Url.Action("GoogleResponse")
+                }, 
+                GoogleDefaults.AuthenticationScheme);
 
         [Route("google-response")]
         public async Task<IActionResult> GoogleResponse()
