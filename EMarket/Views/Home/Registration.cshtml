@@ -1,4 +1,4 @@
-@model TModel
+@model Buyer
 
 @{
     Layout = null;
@@ -6,5 +6,5 @@
 
 @using (Html.BeginForm())
 {
-    
+    @Html.LabelFor(m => m.FirstName)
 }

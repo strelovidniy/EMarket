@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace EMarket.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,9 +23,17 @@ namespace EMarket.Controllers
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        
+        public IActionResult Registration()
         {
+            var Buyer = new List<Buyer>()
+            {
+                new Buyer {FirstName = "Ivan", LastName = "Ivanenko"}
+            };
+            var Seller = new List<Seller>()
+            {
+
+            };
             return View();
         }
 
