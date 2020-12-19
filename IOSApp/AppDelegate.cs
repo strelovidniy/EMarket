@@ -1,5 +1,5 @@
 ﻿using Foundation;
-using IOSApp.Resources;
+using IOSApp.Controllers;
 using UIKit;
 
 namespace IOSApp
