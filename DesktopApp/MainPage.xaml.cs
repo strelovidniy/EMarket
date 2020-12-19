@@ -1,8 +1,6 @@
 ﻿using System;
 using Windows.Media.SpeechSynthesis;
-using Windows.System;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace DesktopApp
 {

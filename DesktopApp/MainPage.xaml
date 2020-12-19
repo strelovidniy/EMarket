@@ -20,8 +20,6 @@
         </Grid.ColumnDefinitions>
         <WebView x:Name="HackatonWebView" Source="https://emarketua.azurewebsites.net/" Grid.ColumnSpan="2" Grid.RowSpan="3" />
 
-        <Rectangle Height="50" Stroke="Black" VerticalAlignment="Center" Fill="#66000000" Grid.ColumnSpan="2" Margin="0,0,-18,0" Grid.Row="2" />
-
         <Button Style="{StaticResource BackButtonStyle}" x:Name="BackButton" Content="Back" Height="50" ClickMode="Press" 
                 FontSize="30" Foreground="White" Background="#59000000" Click="BackButton_Click" HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="2" />
 
