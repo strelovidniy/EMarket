@@ -21,7 +21,7 @@ jobs:
         dotnet-version: '5.0.x'
 
     - name: Build with dotnet
-      run: dotnet build --configuration Release  --project-directory PATH EMarket
+      run: dotnet build --project-directory EMarket
       
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
