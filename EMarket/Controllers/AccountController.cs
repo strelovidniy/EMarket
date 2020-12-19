@@ -56,12 +56,15 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
+        [Route("/buyer/register/")]
+        [Route("/buyer/register")]
         public IActionResult RegisterAsBuyer()
         {
             return View("Register");
         }
 
         [HttpGet]
+        [Route("/seller/register")]
         public IActionResult RegisterAsSeller()
         {
             return View("SellerRegister");
