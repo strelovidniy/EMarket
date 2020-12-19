@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EMarket.ViewModels;
+using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
@@ -22,7 +23,14 @@ namespace EMarket.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<Product> list;
+            
+            using (var db = new AppContext())
+            {
+                list = db.Products.ToList();
+            }
+
+            return View(list);
         }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
