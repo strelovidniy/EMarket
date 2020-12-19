@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace DesktopApp
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage
     {
         public MainPage()
         {
