@@ -22,14 +22,13 @@ namespace EMarket
                 .AddCookie(options => 
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.LoginPath = "/account/google-signin";
                 })
                 .AddGoogle(options =>
                 {
                     options.ClientId = "713332156036-l80sb9pr0ggjuurad736s37c6k8gfdsr.apps.googleusercontent.com";
                     options.ClientSecret = "5px-jceTgtMb2OHFrtF9aJn9";
                 });
-
-               
 
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
