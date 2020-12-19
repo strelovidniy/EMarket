@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,41 +11,35 @@ namespace EMarket.Controllers
 {
     public class CartController : Controller
     {
-        public IActionResult AddItem(int id)
+        public async Task<IActionResult> AddItem(int id, int count = 1)
         {
-            Cart cart;
             Product product;
-            using (var db = new AppContext())
+            await using (var db = new AppContext())
             {
-                product = db.Products.FirstOrDefault(p => p.Id == id);
+                product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
             }
-            if (!HttpContext.Session.TryGetCart(out cart))
+            if (!HttpContext.Session.TryGetCart(out Cart cart))
             {
                 cart = new Cart();
             }
 
             if (cart.Items.ContainsKey(id))
-            {
-                cart.Items[id]++;
-            }
+                cart.Items[id] += count;
             else
-            {
-                cart.Items[id] = 1;
-            }
+                cart.Items[id] = count;
 
             if (product != null)
                 cart.TotalPrice += product.Price;
 
             HttpContext.Session.Set(cart);
-
             return RedirectToAction("Index", "Product", new { id });
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (HttpContext.Session.TryGetCart(out Cart cart))
             {
-                using (var db = new AppContext())
+                await using (var db = new AppContext())
                 {
                     Dictionary<Product, int> products = new Dictionary<Product, int>();
                     foreach (var entry in cart.Items)
