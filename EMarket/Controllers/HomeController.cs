@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using EMarket.ViewModels;
 
 namespace EMarket.Controllers
 {
@@ -24,16 +25,8 @@ namespace EMarket.Controllers
             return View();
         }
         
-        public IActionResult Registration()
+        public IActionResult BuyerRegistration()
         {
-            var Buyer = new List<Buyer>()
-            {
-                new Buyer {FirstName = "Ivan", LastName = "Ivanenko"}
-            };
-            var Seller = new List<Seller>()
-            {
-
-            };
             return View();
         }
 
