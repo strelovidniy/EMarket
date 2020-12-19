@@ -14,9 +14,9 @@
 
 /* Common */
 .container {
-    width: 1040px;
-    max-width: 1040px;
-    min-width: 1040px;
+    width: 1240px;
+    max-width: 1240px;
+    min-width: 1240px;
     height: 100%;
 
     display: flex;
@@ -25,11 +25,23 @@
     align-items: center;
 }
 
+.navigation ul li {
+    display: inline-block;
+}
+
+.navigation ul li {
+    color: var(--secondary-blue);
+}
+
+
 /* Home page */
 .authentication-buttons-wrapper {
     margin-top: 2rem;
     width: 100%;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .button {
@@ -59,6 +71,11 @@
     cursor: pointer;
 }
 
+.register-seller-button {
+    color: var(--secondary-aqua)!important;
+    background-color: transparent;
+    cursor: pointer;
+}
 
 /* Register page */
 .fullscreen-wrapper {
@@ -75,7 +92,7 @@
     box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
     background: rgb(11,236,130);
     background: linear-gradient(149deg, rgba(11,236,130,1) 0%, rgba(6,145,80,1) 100%);
-    z-index: 100;
+    z-index: 2;
 }
 
 
@@ -95,6 +112,7 @@
 .register-wrapper input {
     padding: 0 .5rem;
     font-size: .8rem;
+
     width: 250px;
     border: none;
     border-radius: 30px;
@@ -120,13 +138,39 @@
 }
 
 .carrot {
-    width: 50px;
+    width: 45px;
     position: absolute;
-    bottom: 310px;
-    left: 130px;
+    bottom: 300px;
+    left: 100px;
     object-fit: contain;
-    transform: rotate(14deg);
-    animation: 2s carrot-fly infinite;
+    animation: 2s carrot-fly ease infinite;
+    animation-delay: 1s;
+}
+
+.catcher {
+    width: 200px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -10;
+}
+
+.basket {
+    width: 100px;
+    position: absolute;
+    bottom: 250px;
+    right: 115px;
+    z-index: 20;
+    transform: scale(1.25);
+}
+
+.basket-back {
+    width: 100px;
+    position: absolute;
+    bottom: 250px;
+    right: 115px;
+    z-index: -1;
+    transform: scale(1.25);
 }
 
 .seller-hand {
@@ -135,7 +179,7 @@
     top: 84px;
     left: 149px;
     object-fit: contain;
-    animation: 2s seller-hand-anim infinite;
+    animation: 2s seller-hand-anim ease infinite;
     transform-origin: bottom left;
 }
 
@@ -149,12 +193,48 @@
 }
 
 @keyframes carrot-fly {
-    5% {
+    0% {
         left: 130px;
+        bottom: 300px;
+        transform: rotate(40deg);
+    }
+    50% {
+        bottom: 400px;
     }
     100% {
-        left: 500px;
+        left: 1370px;
+        bottom: 250px;
+        transform: rotate(760deg);
     }
 }
 
-/* Seller register */
+.proceed-register {
+    height: 50px;
+    cursor: pointer;
+    transition: .5s ease all;
+}
+
+.reg-button-wheat-right,
+.reg-button-wheat-left {
+    width: 45px;
+    object-fit: contain;
+    position: absolute;
+    bottom: 130px;
+    opacity: 0;
+    transition: .3s ease all;
+}
+
+.reg-button-wheat-right {
+    right: 644px;
+    transform: scaleX(-1);
+}
+
+.reg-button-wheat-right img {
+    transform: rotate(-45deg);
+}
+
+    .reg-button-wheat-left {
+        left: 644px;
+        transform: scaleX(-1);
+        transform: rotate(-45deg);
+    }
