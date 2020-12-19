@@ -2,36 +2,21 @@
 
 <h2>Регистрация</h2>
 
-<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
     <div class="validation" asp-validation-summary="ModelOnly"></div>
+    @Html.LabelFor(m => m.Email, "Enter email")<br/>
+    @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
+    @Html.LabelFor(m => m.Password, "Enter password")<br/>
+    @Html.TextBoxFor(m => m.Password)<br/>
+    @Html.LabelFor(m => m.ConfirmPassword, "Confirm password")<br/>
+    @Html.TextBoxFor(m => m.ConfirmPassword)<br/>
+    @Html.LabelFor(m => m.FirstName, "FirstName")<br/>
+    @Html.TextBoxFor(m => m.FirstName)<br/>
+    @Html.LabelFor(m => m.LastName, "LastName")<br/>
+    @Html.TextBoxFor(m => m.LastName)<br/>
     <div>
-        <div>
-            <label asp-for="Email">Введите Email</label><br />
-            <input type="email" asp-for="Email" />
-            <span asp-validation-for="Email" />
-        </div>
-        <div>
-            <label asp-for="Password">Введите пароль</label><br />
-            <input asp-for="Password" />
-            <span asp-validation-for="Password" />
-        </div>
-        <div>
-            <label asp-for="ConfirmPassword">Повторите пароль</label><br />
-            <input asp-for="ConfirmPassword" />
-            <span asp-validation-for="ConfirmPassword" />
-        </div>
-        <div>
-            <label asp-for="FirstName">Enter firstname</label><br />
-            <input asp-for="FirstName" />
-            <span asp-validation-for="FirstName" />
-        </div>
-        <div>
-            <label asp-for="LastName">Enter lastname</label><br />
-            <input asp-for="LastName" />
-            <span asp-validation-for="LastName" />
-        </div>
-        <div>
-            <input type="submit" value="Регистрация" />
-        </div>
+        <input type="submit" value="Register" />
     </div>
-</form>
+}
+    
