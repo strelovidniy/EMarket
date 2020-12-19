@@ -21,12 +21,7 @@ jobs:
       with:
         dotnet-version: '5.0.x'
 
-    - name: Build with dotnet
-      working-directory: AndroidApp
-      run: dotnet build --configuration Release
-
     - name: dotnet publish
-      working-directory: AndroidApp
       run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Deploy to Azure Web App
