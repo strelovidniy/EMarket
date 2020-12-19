@@ -1,7 +1,11 @@
-﻿namespace EMarket.Controllers
+﻿using EMarket.Services;
+using Microsoft.AspNetCore.Mvc;
+
+namespace EMarket.Controllers
 {
-    public class SearchController
+    public class SearchController:Controller
     {
-        
+        ISearchService searchService = new SearchService();
+ 
     }
 }
