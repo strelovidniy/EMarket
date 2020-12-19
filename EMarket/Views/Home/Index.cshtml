@@ -1,5 +1,26 @@
-﻿@{
+﻿@model List<Product>
+@{
     ViewData["Title"] = "Home Page";
 }
+<main>
+    
+    @foreach (var product in Model)
+    {
+        <div class="poster">
+            <div class="poster-info">
+                <h1 class="poster-title">@product.Name</h1>
+                <p class="poster-description">@product.Description</p>
+                <p class="poster-eventdate">@product.Price</p>
+                
+            </div>
+            <div class="poster-buttons">
+                <form action="@Url.Action("Index", "Product", new {product.Id})" method="post">
+                    <input type="hidden" name="Id" value="@product.Id">
+                     <button class="view-poster" type="submit">View</button>
+                </form>
+            </div>
 
+        </div>
+    }
+</main>
 
