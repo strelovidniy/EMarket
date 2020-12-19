@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using IOSApp.Resources;
 using UIKit;
 
 namespace IOSApp
@@ -16,7 +17,7 @@ namespace IOSApp
         {
             
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            Window.RootViewController = new UIViewController();
+            Window.RootViewController = new ViewController();
 
             Window.MakeKeyAndVisible();
 
