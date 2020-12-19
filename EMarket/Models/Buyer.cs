@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace EMarket.Models
 {
-    public interface IUser
-    {
-
-    }
-    public class Buyer : IUser
+    public class Buyer
     {
         public int Id { get; set; }
         [Required]
