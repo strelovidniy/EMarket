@@ -23,7 +23,7 @@
         </div>
     }
 </main>
-@if (User.Identity == null)
+@if (User.Identity == null || !User.Claims.Any())
 {
     <div class="container">
         <div class="authentication-buttons-wrapper">

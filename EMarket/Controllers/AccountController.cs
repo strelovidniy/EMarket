@@ -191,7 +191,8 @@ namespace EMarket.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            var id = User.Identity;
+            return RedirectToAction("Index", "Home");
         }
     }
 }
