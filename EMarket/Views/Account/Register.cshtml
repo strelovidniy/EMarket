@@ -1,6 +1,5 @@
 ﻿@model RegisterModel
 
-
 <div class="fullscreen-wrapper">
     <div class="seller">
         <img class="seller-body" src="/images/registration/seller_body.svg" />
@@ -8,6 +7,15 @@
     </div>
     <div class="carrot">
         <img class="carrot-image" src="/images/registration/carrot.svg" />
+    </div>
+    <div class="catcher">
+        <img src="/images/registration/catcher.svg" />
+    </div>
+    <div class="basket-back">
+        <img src="/images/registration/basket_back.svg" />
+    </div>
+    <div class="basket">
+        <img src="/images/registration/basket.svg" />
     </div>
 
     <div class="register-wrapper">
@@ -34,10 +42,15 @@
                 @Html.LabelFor(m => m.LastName, "Last Name")<br />
                 @Html.TextBoxFor(m => m.LastName)<br />
             </div>
-            <div>
+            <div class="reg-button">
                 <input class="proceed-register" type="submit" value="Register" />
+                <div class="reg-button-wheat-left">
+                    <img src="/icons/wheat.svg" />
+                </div>
+                <div class="reg-button-wheat-right">
+                    <img src="/icons/wheat.svg" />
+                </div>
             </div>
         }
     </div>
 </div>
-    
