@@ -29,5 +29,11 @@ namespace EMarket.Controllers
             ViewBag.Deliveries = db.Deliveries.ToList();
             return View(new Order());
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Order order)
+        {
+            return View();
+        }
     }
 }
