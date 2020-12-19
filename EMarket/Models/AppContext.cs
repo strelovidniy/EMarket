@@ -16,7 +16,6 @@ namespace EMarket.Models
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<ProductOrder> ProductOrders { get; set; }
-        public DbSet<Destination> Destinations { get; set; }
         public DbSet<Delivery> Deliveries { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

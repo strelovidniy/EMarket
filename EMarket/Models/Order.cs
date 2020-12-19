@@ -11,8 +11,7 @@ namespace EMarket.Models
         public Delivery Delivery { get; set; }
         public int DeliveryId { get; set; }
 
-        public Destination Destination { get; set; }
-        public int DestinationId { get; set; }
+        public string Destination { get; set; }
 
         public decimal TotalPrice { get; set; }
 

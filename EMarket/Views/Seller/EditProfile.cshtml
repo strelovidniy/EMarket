@@ -1,0 +1,31 @@
+﻿@model Seller
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Product adding</title>
+</head>
+<body>
+<div>
+        @using (Html.BeginForm("EditProfile", "Seller", FormMethod.Post))
+        {
+            <p>
+                @Html.LabelFor(seller=>seller.FirstName, "FirstName: ")
+                @Html.TextBoxFor(seller => seller.FirstName)
+            </p>
+            <p>
+                @Html.LabelFor(seller=>seller.LastName, "LastName: ")
+                @Html.TextBoxFor(seller => seller.LastName)
+            </p>
+            <button type="submit">Save</button>
+        }
+    </div>
+</body>
+</html>
