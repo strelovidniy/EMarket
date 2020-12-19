@@ -26,8 +26,8 @@ namespace EMarket
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "713332156036-l80sb9pr0ggjuurad736s37c6k8gfdsr.apps.googleusercontent.com";
-                    options.ClientSecret = "5px-jceTgtMb2OHFrtF9aJn9";
+                    options.ClientId = "713332156036-thg78s3ild2s5jjfp3i7ngj5de75af7v.apps.googleusercontent.com";
+                    options.ClientSecret = "JEFG0DgH4JKqBk4waXyTioJe";
                 });
 
             services.AddControllersWithViews();

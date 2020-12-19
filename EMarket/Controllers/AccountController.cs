@@ -20,7 +20,7 @@ namespace EMarket.Controllers
     }
     public class AccountController : Controller
     {
-        [Route("google-signin")]
+        [Route("~/account/google-signin")]
         public IActionResult GoogleLogin()
         {
             var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
