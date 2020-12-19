@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Http
+@model EMarket.Models.Order
+
+@{
+    ViewBag.Title = "Order creation";
+    Layout = "_Layout";
+}
+
+<h2>Order</h2>
+@using (Html.BeginForm("Create", "Order", FormMethod.Post))
+{
+    <p>
+        @Html.LabelFor(o => o.Destination, "Destination: ")
+        @Html.TextBoxFor(o=>o.Destination)
+    </p>
+    <p>
+        @Html.LabelFor(o => o.Delivery, "Delivery: ")
+        <select asp-for="@Model.DeliveryId">
+            @foreach (var item in ViewBag.Deliveries)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </select>
+    </p>
+    <p>
+        <ul>
+            @foreach (var product in ViewBag.Products)
+            {
+                <li>
+                    @product.Key.Name @product.Key.Quantity @product.Key.Price @product.Key.Count
+                </li>
+            }
+        </ul>
+    </p>
+    <p>
+
+    </p>
+    <button type="submit">Send</button>
+}

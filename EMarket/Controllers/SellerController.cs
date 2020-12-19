@@ -10,7 +10,6 @@ using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
-    //[Authorize(Roles = "Seller")]
     public class SellerController : Controller
     {
         public async Task<IActionResult> Index()
