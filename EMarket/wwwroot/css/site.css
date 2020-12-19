@@ -1,5 +1,9 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+* {
+    font-family: "Poppins";
+}
+
 /* Variables binding */
 :root {
     --main-color: #07c26a;
@@ -53,4 +57,49 @@
     color: var(--main-color) !important;
     background-color: transparent;
     cursor: pointer;
+}
+
+
+/* Register page */
+.fullscreen-wrapper {
+    height: calc(100vh - 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-wrapper {
+    padding: 2rem;
+    border-radius: 30px;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    background: rgb(11,236,130);
+    background: linear-gradient(149deg, rgba(11,236,130,1) 0%, rgba(6,145,80,1) 100%);
+}
+
+.register-wrapper form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 500px;
+}
+
+.register-wrapper label {
+    color: white;
+}
+
+.register-wrapper input {
+    padding: 0 .5rem;
+    font-size: .8rem;
+    width: 250px;
+    border: none;
+    border-radius: 30px;
+    -webkit-box-shadow: 0px 5px 16px 5px rgba(0,0,0,0.15);
+    box-shadow: 0px 5px 16px 5px rgba(0,0,0,0.15);
+}
+
+.register-wrapper input:focus {
+    outline: none;
 }

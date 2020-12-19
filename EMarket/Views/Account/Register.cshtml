@@ -1,22 +1,35 @@
 ﻿@model RegisterModel
 
-<h2>Регистрация</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
-    <div class="validation" asp-validation-summary="ModelOnly"></div>
-    @Html.LabelFor(m => m.Email, "Enter email")<br/>
-    @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
-    @Html.LabelFor(m => m.Password, "Enter password")<br/>
-    @Html.TextBoxFor(m => m.Password)<br/>
-    @Html.LabelFor(m => m.ConfirmPassword, "Confirm password")<br/>
-    @Html.TextBoxFor(m => m.ConfirmPassword)<br/>
-    @Html.LabelFor(m => m.FirstName, "FirstName")<br/>
-    @Html.TextBoxFor(m => m.FirstName)<br/>
-    @Html.LabelFor(m => m.LastName, "LastName")<br/>
-    @Html.TextBoxFor(m => m.LastName)<br/>
-    <div>
-        <input type="submit" value="Register" />
+<div class="fullscreen-wrapper">
+    <div class="register-wrapper">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <div class="register-item">
+                @Html.LabelFor(m => m.Email, "Enter email", new {@class = "email-label"})<br/>
+                @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
+            </div>
+            <div class="register-item">
+                @Html.LabelFor(m => m.Password, "Enter password")<br/>
+                @Html.TextBoxFor(m => m.Password)<br/>
+            </div>
+            <div class="register-item">
+                @Html.LabelFor(m => m.ConfirmPassword, "Confirm password")<br/>
+                @Html.TextBoxFor(m => m.ConfirmPassword)<br/>
+            </div>
+            <div class="register-item">
+                @Html.LabelFor(m => m.FirstName, "First Name")<br/>
+                @Html.TextBoxFor(m => m.FirstName)<br/>
+            </div>
+            <div class="register-item">
+                @Html.LabelFor(m => m.LastName, "Last Name")<br/>
+                @Html.TextBoxFor(m => m.LastName)<br/>
+            </div>
+            <div>
+                <input class="proceed-register" type="submit" value="Register" />
+            </div>
+        }
     </div>
-}
+</div>
     
