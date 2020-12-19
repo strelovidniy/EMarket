@@ -56,7 +56,6 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
-        [Route("/buyer/register/")]
         [Route("/buyer/register")]
         public IActionResult RegisterAsBuyer()
         {
