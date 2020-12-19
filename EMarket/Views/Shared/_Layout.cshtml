@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Models
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,12 +23,37 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="BuyerRegistration">Sign up for buyers</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Sign up for buyers</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Sign up for seller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Sign in</a>
+                            </li>
+                        
                     </ul>
                 </div>
             </div>
+                      <span class="navbar-text ml-auto">
+                                @{
+                                    Cart cart;
+                                    if (!Context.Session.TryGetCart(out cart))
+                                    {
+                                        cart = new Cart();
+                                    }
+                                    if (cart.Items.Count ==0)
+                                    {
+                                        @:Cart is empty
+                                    }
+                                    else
+                                    {
+                                        @:Products @cart.Items.Count for price @cart.Amount
+                                    }
+                                }
+                            </span>
         </nav>
+ 
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -37,7 +63,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - EMarket - <a asp-area="" asp-controller="Home" asp-action="BuyerRegistration">Sign up fo buyers</a>
+            &copy; 2020 - EMarket - <a asp-area="" asp-controller="Account" asp-action="Register">Sign up fo buyers</a>
+            <a asp-area="" asp-controller="Account" asp-action="Register">Sign up for sellers</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
