@@ -15,6 +15,11 @@ namespace EMarket.Models
         public string LastName { get; set; }
         public string CompanyName { get; set; }
         public string City { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
+        [MinLength(8)]
+        public string Password { get; set; }
         public List<Product> Products { get; set; }
         public List<Order> Orders { get; set; }
     }
