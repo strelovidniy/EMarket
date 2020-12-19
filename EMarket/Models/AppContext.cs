@@ -23,9 +23,9 @@ namespace EMarket.Models
         {
             modelBuilder.Entity<ProductOrder>().HasKey(order => new { order.OrderId, order.ProductId });
             modelBuilder.Entity<ProductOrder>().HasOne(po => po.Order).WithMany(o => o.ProductOrder)
-                .HasForeignKey(po => po.OrderId);
+                .HasForeignKey(po => po.OrderId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductOrder>().HasOne(po => po.Product).WithMany(p => p.ProductOrder)
-                .HasForeignKey(po => po.ProductId);
+                .HasForeignKey(po => po.ProductId).OnDelete(DeleteBehavior.NoAction);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
