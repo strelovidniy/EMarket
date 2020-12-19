@@ -10,7 +10,11 @@ namespace EMarket.Models
         public int Id { get; set; }
         public Delivery Delivery { get; set; }
         public int DeliveryId { get; set; }
+        public Destination Destination { get; set; }
         public int DestinationId { get; set; }
+        public decimal TotalPrice { get; set; }
+        public int BuyerId { get; set; }
+        public Buyer Buyer { get; set; }
         public List<ProductOrder> ProductOrder { get; set; } = new List<ProductOrder>();
     }
 }
