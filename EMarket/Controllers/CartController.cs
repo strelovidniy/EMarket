@@ -7,7 +7,7 @@ using Models;
 
 namespace EMarket.Controllers
 {
-    public class CartController:Controller
+    public class CartController : Controller
     {
         public IActionResult AddItem(int id)
         {
@@ -19,7 +19,7 @@ namespace EMarket.Controllers
             }
             if (!HttpContext.Session.TryGetCart(out cart))
             {
-               cart = new Cart();
+                cart = new Cart();
             }
 
             if (cart.Items.ContainsKey(id))
@@ -30,13 +30,13 @@ namespace EMarket.Controllers
             {
                 cart.Items[id] = 1;
             }
-            
-            if(product!=null)
+
+            if (product != null)
                 cart.TotalPrice += product.Price;
 
             HttpContext.Session.Set(cart);
 
-            return RedirectToAction("Index", "Product", new {id});
+            return RedirectToAction("Index", "Product", new { id });
         }
 
         public IActionResult Index()
@@ -54,8 +54,7 @@ namespace EMarket.Controllers
             }
 
             return View("Empty");
-
         }
-        
+
     }
 }
