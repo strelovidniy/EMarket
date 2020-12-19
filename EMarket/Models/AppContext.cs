@@ -12,7 +12,11 @@ namespace EMarket.Models
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        
+        public DbSet<Buyer> Buyers { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<ProductOrder> ProductOrders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -22,8 +26,8 @@ namespace EMarket.Models
         {
             var builder = new SqlConnectionStringBuilder();
             builder.DataSource = @"emarketdbdbserver.database.windows.net";
-            builder.UserID = "EMarketHackaton@emarketdbdbserver";
-            builder.Password = "Hackaton0103";
+            builder.UserID = "HackatonTeam";
+            builder.Password = "EMarketHackaton!";
             builder.InitialCatalog = "EMarketDB";
             optionsBuilder.UseSqlServer(builder.ConnectionString);
         }
