@@ -1,61 +1,58 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace EMarket.Controllers
 {
-    public class CartController:Controller
+    public class CartController : Controller
     {
-        public IActionResult AddItem(int id)
+        public async Task<IActionResult> AddItem(int id, int count = 1)
         {
-            Cart cart;
             Product product;
-            using (var db = new AppContext())
+            await using (var db = new AppContext())
             {
-                product = db.Products.FirstOrDefault(p => p.Id == id);
+                product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
             }
-            if (!HttpContext.Session.TryGetCart(out cart))
+            if (!HttpContext.Session.TryGetCart(out Cart cart))
             {
-               cart = new Cart();
+                cart = new Cart();
             }
 
             if (cart.Items.ContainsKey(id))
-            {
-                cart.Items[id]++;
-            }
+                cart.Items[id] += count;
             else
-            {
-                cart.Items[id] = 1;
-            }
-            
-            if(product!=null)
+                cart.Items[id] = count;
+
+            if (product != null)
                 cart.TotalPrice += product.Price;
 
             HttpContext.Session.Set(cart);
-
-            return RedirectToAction("Index", "Product", new {id});
+            return RedirectToAction("Index", "Product", new { id });
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Cart cart;
-            List<Product> products;
-            if (HttpContext.Session.TryGetCart(out cart))
+            if (HttpContext.Session.TryGetCart(out Cart cart))
             {
-                using (var db = new AppContext())
+                await using (var db = new AppContext())
                 {
-                    var productIds = cart.Items.Select(item => item.Key).ToList();
-                    products = db.Products.Where(p => productIds.Contains(p.Id)).ToList();
+                    Dictionary<Product, int> products = new Dictionary<Product, int>();
+                    foreach (var entry in cart.Items)
+                    {
+                        products.Add(db.Products.Include(p => p.Seller)
+                            .FirstOrDefaultAsync(p => p.Id == entry.Key).Result, entry.Value);
+                    }
                     return View(products);
                 }
             }
 
             return View("Empty");
-
         }
-        
+
     }
 }

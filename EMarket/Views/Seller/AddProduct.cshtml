@@ -1,0 +1,51 @@
+﻿@model Product
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Product adding</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("AddProduct", "Seller", FormMethod.Post))
+        {
+            <p>
+                @Html.LabelFor(product => product.Name, "Name: ")
+                @Html.TextBoxFor(product => product.Name)
+            </p>
+            <p>
+                @Html.LabelFor(product => product.Description, "Description: ")
+                @Html.TextAreaFor(product => product.Description)
+            </p>
+            <p>
+                @Html.LabelFor(product => product.Price, "Price: ")
+                @Html.TextBoxFor(product => product.Price)
+            </p>
+            <p>
+                @Html.LabelFor(product => product.Count, "Count: ")
+                @Html.TextBoxFor(product => product.Count, new { type = "number" })
+            </p>
+            <p>
+                @Html.LabelFor(product => product.Quantity, "Quantity: ")
+                @Html.TextBoxFor(product => product.Quantity)
+            </p>
+            <p>
+                @Html.LabelFor(product => product.Category, "Category: ")
+                <select asp-for="@Model.CategoryId">
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <option value="@category.Id">@category.ToString()</option>
+                    }
+                </select>
+            </p>
+
+            <button type="submit">Add</button>
+        }
+    </div>
+</body>
+</html>

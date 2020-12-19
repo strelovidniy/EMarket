@@ -1,6 +1,18 @@
-﻿@model object
+﻿@model IEnumerable<Order>
 
-@foreach (var claim in User.Claims.ToList())
+@foreach (var order in Model)
 {
-    <p>@claim.Type - @claim.Value</p>
+<div>
+    <p>Id - @order.Id</p>
+    <ul>
+        @foreach (var product in order.ProductOrder)
+        {
+            <li>@product.Product.Name - @product.Count - @product.Price</li>
+        }
+    </ul>
+    <p>Client - @order.Buyer.FirstName @order.Buyer.LastName</p>
+    <p>Delivery - @order.Delivery.Name</p>
+    <p>@order.Destination.City - @order.Destination.Street @order.Destination.Number</p>
+    <p>Total price - @order.TotalPrice</p>
+</div>
 }

@@ -1,4 +1,4 @@
-﻿@model List<Product>
+﻿@model Dictionary<Product, int>
 
 @{
     ViewBag.Title = "Cart";
@@ -9,32 +9,32 @@
 
 <table class="table table-sm table-striped">
     <thead class="thead-dark">
-    <tr>
-        <th scope="col">№</th>
-        <th scope="col">Name</th>
-        <th scope="col">Seller</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Price</th>
-    </tr>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Seller</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Count</th>
+            <th scope="col">Price</th>
+        </tr>
     </thead>
     <tbody>
-    @for (int i = 0; i < Model.Count; i++)
-    {
-        <tr>
-            <td class="text-right">@(i+1)</td>
-            <td>@Model[i].Name</td>
-            <td>@Model[i].Seller</td>
-            <td class="text-right">@Model[i].Quantity</td>
-            <td class="text-right">@Model[i].Price</td>
-        </tr>
-    }
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Key.Name</td>
+                <td>@product.Key.Seller.FirstName @product.Key.Seller.LastName</td>
+                <td>@product.Key.Quantity</td>
+                <td>@product.Value</td>
+                <td>@product.Key.Price</td>
+            </tr>
+        }
     </tbody>
     <tfoot>
-    <tr>
-        <td colspan="3" class="text-right">Total</td>
-        <td class="text-right">@Model.</td>
-        <td class="text-right">@Model.Sum(pr=>pr.Price)</td>
-    </tr>
+        <tr>
+            <td colspan="3" class="text-right">Total</td>
+            <td class="text-right"></td>
+            <td class="text-right">@Model.Keys.Sum(pr => pr.Price)</td>
+        </tr>
     </tfoot>
-    
+
 </table>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -19,6 +20,39 @@ namespace EMarket.Controllers
     }
     public class AccountController : Controller
     {
+        [Route("~/account/google-signin")]
+        public IActionResult GoogleLogin()
+        {
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
+
+            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        }
+
+        [Route("google-response")]
+        public async Task<IActionResult> GoogleResponse()
+        {
+            var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            var claims = result.Principal?.Identities.FirstOrDefault()?.Claims
+                .ToDictionary(k => k.Type, v => v.Value);
+            await using (var db = new AppContext())
+            {
+                Buyer user = await db.Buyers
+                    .FirstOrDefaultAsync(p => p.Email == claims[ClaimTypes.Email]);
+                if (user == null)
+                {
+                    await db.Buyers.AddAsync(new Buyer()
+                    {
+                        Email = claims[ClaimTypes.Email],
+                        FirstName = claims[ClaimTypes.GivenName],
+                        LastName = claims[ClaimTypes.Surname],
+                        Password = claims[ClaimTypes.Sid]
+                    });
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -43,7 +77,8 @@ namespace EMarket.Controllers
                 }
                 else
                 {
-                    Seller user = await db.Sellers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    Seller user = await db.Sellers.FirstOrDefaultAsync(u => u.Email == model.Email
+                                                                            && u.Password == model.Password);
                     if (user != null)
                     {
                         await AuthenticateSeller(user);
@@ -56,14 +91,12 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
-        [Route("/buyer/register")]
         public IActionResult RegisterAsBuyer()
         {
             return View("Register");
         }
 
         [HttpGet]
-        [Route("/seller/register")]
         public IActionResult RegisterAsSeller()
         {
             return View("SellerRegister");
@@ -129,13 +162,12 @@ namespace EMarket.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, buyer.FirstName+" "+buyer.LastName),
-                new Claim("Id", buyer.Id.ToString()),
                 new Claim(ClaimTypes.Email, buyer.Email),
                 new Claim(ClaimTypes.Name, buyer.FirstName+" "+buyer.LastName),
                 new Claim(ClaimTypes.Role, "Buyer")
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
+                "Buyer");
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
@@ -144,21 +176,20 @@ namespace EMarket.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, seller.FirstName+" "+seller.LastName),
-                new Claim("Id", seller.Id.ToString()),
                 new Claim(ClaimTypes.Email, seller.Email),
                 new Claim(ClaimTypes.Name, seller.FirstName+" "+seller.LastName),
-                new Claim("City", seller.City),
+                new Claim(ClaimTypes.Locality, seller.City),
                 new Claim(ClaimTypes.Role, "Seller")
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
+                "Seller");
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

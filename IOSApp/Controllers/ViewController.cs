@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 
-namespace IOSApp.Resources
+namespace IOSApp.Controllers
 {
     public class ViewController : UIViewController
     {
