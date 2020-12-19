@@ -16,6 +16,8 @@ namespace EMarket.Models
 
         [EmailAddress]
         public string Email { get; set; }
+
+        [MinLength(8)]
         public string Password { get; set; }
         public List<Order> Orders { get; set; }
     }

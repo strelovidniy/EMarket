@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EMarket.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20201219123606_UserPassword")]
-    partial class UserPassword
+    [Migration("20201219144034_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -122,6 +122,9 @@ namespace EMarket.Migrations
                     b.Property<int>("DestinationId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SellerId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
@@ -132,6 +135,8 @@ namespace EMarket.Migrations
                     b.HasIndex("DeliveryId");
 
                     b.HasIndex("DestinationId");
+
+                    b.HasIndex("SellerId");
 
                     b.ToTable("Orders");
                 });
@@ -198,10 +203,15 @@ namespace EMarket.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -228,6 +238,12 @@ namespace EMarket.Migrations
                         .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("EMarket.Models.Seller", "Seller")
+                        .WithMany("Orders")
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EMarket.Models.Product", b =>
@@ -239,7 +255,7 @@ namespace EMarket.Migrations
                         .IsRequired();
 
                     b.HasOne("EMarket.Models.Seller", "Seller")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("SellerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -250,13 +266,13 @@ namespace EMarket.Migrations
                     b.HasOne("EMarket.Models.Order", "Order")
                         .WithMany("ProductOrder")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("EMarket.Models.Product", "Product")
                         .WithMany("ProductOrder")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

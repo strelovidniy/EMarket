@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-
 namespace EMarket.Controllers
 {
     public class Map : Controller
@@ -7,6 +6,7 @@ namespace EMarket.Controllers
         // GET
         public IActionResult PointsOfProduction()
         {
+            
             return View();
         }
     }
