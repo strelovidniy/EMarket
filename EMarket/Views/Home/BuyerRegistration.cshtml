@@ -6,6 +6,8 @@
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(m => m.FirstName)
-    
+    @Html.LabelFor(m => m.FirstName, "Enter your name:")
+    @Html.TextBoxFor(m => m.FirstName)
+    @Html.LabelFor(m => m.LastName, "Enter your surname:")
+    @Html.TextBoxFor(m => m.LastName)
 }
