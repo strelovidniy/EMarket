@@ -68,7 +68,7 @@
             
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             
-             const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             
                      var list_location = []
                       
@@ -87,15 +87,6 @@
                 var markerCluster = new MarkerClusterer(map, markers,
                             {imagePath: "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"});
             
-            
-            
-            
-            
-            
-            
-            
-            // Adds a Places search box. Searching for a place will center the map on that
-            // location.
             map.controls[google.maps.ControlPosition.RIGHT_TOP].push(document.getElementById('bar'));
             var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autoc'));
             autocomplete.bindTo('bounds', map);
