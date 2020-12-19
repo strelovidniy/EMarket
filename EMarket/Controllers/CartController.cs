@@ -52,6 +52,8 @@ namespace EMarket.Controllers
                         products.Add(db.Products.Include(p => p.Seller)
                             .FirstOrDefaultAsync(p => p.Id == entry.Key).Result, entry.Value);
                     }
+
+                    ViewBag.Cart = cart;
                     return View(products);
                 }
             }
