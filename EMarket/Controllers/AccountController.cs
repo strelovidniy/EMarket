@@ -13,11 +13,13 @@ using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
-
+    public enum Role
+    {
+        Seller, Buyer
+    }
     public class AccountController : Controller
     {
         [HttpGet]
-        [Route("/login")]
         public IActionResult Login()
         {
             return View();
@@ -25,32 +27,49 @@ namespace EMarket.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model, Role role)
         {
             if (ModelState.IsValid)
             {
                 await using AppContext db = new AppContext();
-                Buyer user = await db.Buyers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-                if (user != null)
+                if (role == Role.Buyer)
                 {
-                    await Authenticate(user);
-                    return RedirectToAction("Index", "Home");
+                    Buyer user = await db.Buyers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    if (user != null)
+                    {
+                        await AuthenticateBuyer(user);
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
-                ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                else
+                {
+                    Seller user = await db.Sellers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    if (user != null)
+                    {
+                        await AuthenticateSeller(user);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError("", "Incorrect login or/and password.");
             }
-            return View(model);
+            return View("Login", model);
         }
 
-        [Route("/register")]
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult RegisterAsBuyer()
         {
-            return View();
+            return View("Register");
+        }
+
+        [HttpGet]
+        public IActionResult RegisterAsSeller()
+        {
+            return View("SellerRegister");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> RegisterAsBuyer(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -67,23 +86,67 @@ namespace EMarket.Controllers
                     });
                     await db.SaveChangesAsync();
 
-                    await Authenticate(addedBuyer.Entity);
+                    await AuthenticateBuyer(addedBuyer.Entity);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                    ModelState.AddModelError("", "Invalid login or password");
+                ModelState.AddModelError("", "Incorrect login or/and password.");
             }
-            return View(model);
+            return View("Register", model);
         }
 
-        private async Task Authenticate(Buyer buyer)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RegisterAsSeller(SellerRegisterModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await using AppContext db = new AppContext();
+                Buyer user = await db.Buyers.FirstOrDefaultAsync(u => u.Email == model.Email);
+                if (user == null)
+                {
+                    EntityEntry<Seller> addedSeller = await db.Sellers.AddAsync(new Seller
+                    {
+                        Email = model.Email,
+                        Password = model.Password,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        City = model.City
+                    });
+                    await db.SaveChangesAsync();
+
+                    await AuthenticateSeller(addedSeller.Entity);
+                    return RedirectToAction("Index", "Home");
+                }
+                ModelState.AddModelError("", "Incorrect login or/and password.");
+            }
+            return View("SellerRegister", model);
+        }
+
+        private async Task AuthenticateBuyer(Buyer buyer)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, buyer.FirstName+" "+buyer.LastName),
-                new Claim("id", buyer.Id.ToString()),
+                new Claim("Id", buyer.Id.ToString()),
                 new Claim(ClaimTypes.Email, buyer.Email),
-                new Claim(ClaimTypes.Name, buyer.FirstName+" "+buyer.LastName)
+                new Claim(ClaimTypes.Name, buyer.FirstName+" "+buyer.LastName),
+                new Claim(ClaimTypes.Role, "Buyer")
+            };
+            ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+
+        private async Task AuthenticateSeller(Seller seller)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, seller.FirstName+" "+seller.LastName),
+                new Claim("Id", seller.Id.ToString()),
+                new Claim(ClaimTypes.Email, seller.Email),
+                new Claim(ClaimTypes.Name, seller.FirstName+" "+seller.LastName),
+                new Claim("City", seller.City),
+                new Claim(ClaimTypes.Role, "Seller")
             };
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
                 ClaimsIdentity.DefaultRoleClaimType);
