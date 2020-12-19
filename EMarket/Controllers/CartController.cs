@@ -3,6 +3,7 @@ using System.Linq;
 using EMarket.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace EMarket.Controllers
@@ -41,14 +42,16 @@ namespace EMarket.Controllers
 
         public IActionResult Index()
         {
-            Cart cart;
-            List<Product> products;
-            if (HttpContext.Session.TryGetCart(out cart))
+            if (HttpContext.Session.TryGetCart(out Cart cart))
             {
                 using (var db = new AppContext())
                 {
-                    var productIds = cart.Items.Select(item => item.Key).ToList();
-                    products = db.Products.Where(p => productIds.Contains(p.Id)).ToList();
+                    Dictionary<Product, int> products = new Dictionary<Product, int>();
+                    foreach (var entry in cart.Items)
+                    {
+                        products.Add(db.Products.Include(p => p.Seller)
+                            .FirstOrDefaultAsync(p => p.Id == entry.Key).Result, entry.Value);
+                    }
                     return View(products);
                 }
             }
