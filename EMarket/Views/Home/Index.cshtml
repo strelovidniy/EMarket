@@ -1,22 +1,48 @@
-﻿@model List<Product>
+﻿@using Models
+@model List<Product>
 @{
     ViewData["Title"] = "EMarket | Home";
 }
 
 <section class="content">
     <div class="container">
-        <div class="searchbar" data-aos="fade-left" data-aos-delay="500">
+        @if (User.Identity != null || User.Claims.Any())
+        {
+        <div class="searchbar" data-aos="fade-right" data-aos-delay="500">
             <form method="POST">
                 <input type="text" name="search" autocomplete="off" required />
                 <label for="name" class="search-label">
                     <span class="search_label-name">Search</span>
                 </label>
             </form>
+            <div class="cart-wrapper">
+                <div class="cart-image">
+                    <img src="/icons/cart.svg" />
+                </div>
+                <span class="cart">
+                    @{
+                        Cart cart;
+                        if (!Context.Session.TryGetCart(out cart))
+                        {
+                            cart = new Cart();
+                        }
+                        if (Context.Session.TryGetCart(out cart) && cart.Items.Count > 0)
+                        {
+                            <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a>
+                        }
+                        else
+                        {
+                            @:Cart is empty
+                        }
+                    }
+                </span>
+            </div>
+
         </div>
-        
+        }
         <div class="farmers">
             <h1 data-aos="fade-down" data-aos-delay="1000">Support locals</h1>
-            <img data-aos="zoom-in-up" data-aos-delay="1500" src="/images/home/farmers.jpg"/>
+            <img data-aos="zoom-in-up" data-aos-delay="1500" src="/images/home/farmers.jpg" />
         </div>
     </div>
     

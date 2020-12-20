@@ -55,9 +55,18 @@
     width: 1240px;
     max-width: 1240px;
     min-width: 1240px;
-
+    justify-content: space-between;
     display: flex;
     flex-direction: column;
+}
+
+.header-container {
+    width: 1240px;
+    max-width: 1240px;
+    min-width: 1240px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navigation ul li {
@@ -273,6 +282,9 @@ body {
 
 header {
     margin-top: 2rem;
+
+    display: flex;
+    justify-content: center;
 }
 
 .name-surname {
@@ -289,7 +301,7 @@ header {
 }
 
 .user {
-    width: 100%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -300,6 +312,10 @@ header {
 .searchbar {
     margin: 3rem 0;
     width: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .searchbar form {
@@ -361,6 +377,25 @@ header {
 
 .searchbar input:focus {
     outline: none;
+}
+
+.cart-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cart {
+    margin-top: 1rem;
+}
+
+.cart-image {
+    margin: 0 1rem;
+}
+
+.cart-image img {
+    width: 50px;
+    object-fit: contain;
 }
 
 .farmers {
@@ -636,6 +671,10 @@ header {
         transition: .3s ease-in-out all;
     }
 
+    .user {
+        width: 100%;
+    }
+
     .close-mobile {
         margin-top: 1.5rem;
         margin-right: 1.5rem;
@@ -687,7 +726,19 @@ header {
         justify-content: center;
         align-items: center;
         height: 100%;
-        /* transform: translateY(-25%); */
+    }
+
+    .mobile-header {
+        flex: 0.1;
+        margin-top: 1.4rem;
+    }
+
+    .mobile-body {
+        flex: 0.9;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .fullscreen-wrapper {
@@ -722,8 +773,17 @@ header {
     }
 
     .searchbar {
-        margin-left: 3rem;
         width: 450px;
+        flex-direction: column;
+    }
+
+
+    .cart-wrapper {
+        width: 225px;
+    }
+
+    .cart-image {
+        margin: 0;
     }
 
 
