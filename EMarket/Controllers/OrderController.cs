@@ -11,7 +11,6 @@ using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
-    //todo
     public class OrderController : Controller
     {
         [HttpGet]
@@ -84,8 +83,8 @@ namespace EMarket.Controllers
                         ProductId = product.Id,
                         OrderId = newOrder.Id
                     });
-
                 }
+
                 await db.SaveChangesAsync();
             }
 
