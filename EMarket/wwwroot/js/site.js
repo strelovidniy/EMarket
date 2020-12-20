@@ -122,3 +122,11 @@ $(".product-button").mouseover(function() {
 $(".product-button").mouseleave(function () {
     $(".product-button").css("transform", "scale(1)");
 });
+
+$(".products-card").mouseover(function () {
+    $(this).css("transform", "scale(1.1)");
+});
+
+$(".products-card").mouseleave(function () {
+    $(this).css("transform", "scale(1)");
+});
