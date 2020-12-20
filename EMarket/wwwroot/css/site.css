@@ -354,8 +354,8 @@ body {
         bottom: 400px;
     }
     100% {
-        left: 1370px;
-        bottom: 250px;
+        left: 1530px;
+        bottom: 240px;
         transform: rotate(760deg);
     }
 }
@@ -371,13 +371,13 @@ body {
     width: 45px;
     object-fit: contain;
     position: absolute;
-    bottom: 130px;
+    bottom: 180px;
     opacity: 0;
     transition: .3s ease all;
 }
 
 .reg-button-wheat-right {
-    right: 644px;
+    right: 750px;
     transform: scaleX(-1);
 }
 
@@ -385,8 +385,8 @@ body {
     transform: rotate(-45deg);
 }
 
-    .reg-button-wheat-left {
-        left: 644px;
-        transform: scaleX(-1);
-        transform: rotate(-45deg);
-    }
+.reg-button-wheat-left {
+    left: 750px;
+    transform: scaleX(-1);
+    transform: rotate(-45deg);
+}

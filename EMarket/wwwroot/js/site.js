@@ -56,8 +56,8 @@ $(".reg-button").mouseover(function() {
     $(".reg-button-wheat-right").css("opacity", "1");
     $(".reg-button-wheat-left").css("opacity", "1");
 
-    $(".reg-button-wheat-left").css("left", "618px");
-    $(".reg-button-wheat-right").css("right", "618px");
+    $(".reg-button-wheat-left").css("left", "690px");
+    $(".reg-button-wheat-right").css("right", "690px");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-180deg);");
     $(".reg-button-wheat-right").css("transform", "rotate(-180deg);");
@@ -70,8 +70,8 @@ $(".reg-button").mouseleave(function () {
     $(".reg-button-wheat-right").css("opacity", "0");
     $(".reg-button-wheat-left").css("opacity", "0");
 
-    $(".reg-button-wheat-left").css("left", "644px");
-    $(".reg-button-wheat-right").css("right", "644px");
+    $(".reg-button-wheat-left").css("left", "750px");
+    $(".reg-button-wheat-right").css("right", "750px");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-45deg);");
     $(".reg-button-wheat-lerightft").css("transform", "rotate(-45deg);");
