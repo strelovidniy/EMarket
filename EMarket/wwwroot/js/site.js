@@ -142,3 +142,7 @@ $(".settings").mouseleave(function () {
 $(".home").click(function() {
     window.location.href = "/home/index";
 });
+
+$(".settings").click(function () {
+    window.location.href = "/buyer/editbuyer";
+});

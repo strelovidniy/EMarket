@@ -89,7 +89,7 @@ a:hover {
 }
 
 body {
-    height: 100vh;
+    height: 100%;
     overflow-x: hidden;
 }
 
@@ -781,7 +781,10 @@ header{
 /* Products cart */
 .products-container {
     height: calc(100% - 7rem);
-
+    width: 1240px;
+    max-width: 1240px;
+    min-width: 1240px;
+    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -795,9 +798,61 @@ header{
     flex-direction: column;
 }
 
-/* -------------------------------------------------- MOBILE -------------------------------------------------- */
-@media (orientation: portrait) {
-    .progressbar, .scrollpath {
+.buyer-edit-form {
+    margin-top: 7rem;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
+}
+
+.buyer-edit-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 600px;
+
+}
+
+.edit-name input,
+.edit-username input{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 350px;
+    margin: 2.3rem 0;
+}
+
+.editors {
+    z-index: -10;
+    position: absolute;
+    width: 400px;
+    object-fit: contain;
+    bottom: 0;
+    left: 0;
+}
+
+.edit-name input:focus,
+.edit-username input:focus {
+    outline: none;
+}
+
+.edit-save {
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 30px;
+    transition: .3s ease-in-out all;
+}
+
+.edit-save:hover {
+    transform: scale(1.05);
+}
+
+    /* -------------------------------------------------- MOBILE -------------------------------------------------- */
+    @media (orientation: portrait) {
+        .progressbar, .scrollpath {
         display: none;
     }
 
