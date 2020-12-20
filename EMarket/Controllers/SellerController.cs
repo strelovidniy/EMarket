@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -16,10 +17,11 @@ namespace EMarket.Controllers
         public async Task<IActionResult> Index()
         {
             await using AppContext db = new AppContext();
-            var orders = db.Orders.Where(o => o.SellerId == Int32.Parse(User.FindFirst("Id").Value))
+            var orders = db.Orders.Include(s=>s.Seller)
+                .Where(o => o.Seller.Email == User.FindFirst(u 
+                    => u.Type == ClaimTypes.Email).Value)
                 .Include(o => o.Buyer)
                 .Include(o => o.Delivery)
-                .Include(o => o.Destination)
                 .Include(o => o.ProductOrder)
                 .ThenInclude(po => po.Product).ToList();
             return View(orders);

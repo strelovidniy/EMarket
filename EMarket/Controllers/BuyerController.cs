@@ -12,6 +12,18 @@ namespace EMarket.Controllers
 {
     public class BuyerController : Controller
     {
+        public async Task<IActionResult> Index()
+        {
+            await using AppContext db = new AppContext();
+            var orders = db.Orders.Include(s=>s.Seller)
+                .Where(o => o.Seller.Email == User.FindFirst(u 
+                    => u.Type == ClaimTypes.Email).Value)
+                .Include(o => o.Buyer)
+                .Include(o => o.Delivery)
+                .Include(o => o.ProductOrder)
+                .ThenInclude(po => po.Product).ToList();
+            return View(orders);
+        }
         [HttpGet]
         public IActionResult EditBuyer()
         {
