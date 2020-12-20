@@ -9,9 +9,11 @@
 @foreach (var product in Model)
 {
     <div>
+
         <p>@product.Name</p>
         <p>@product.Price</p>
         <p>@product.Quantity</p>
         <p>@product.Description</p>
+        @Html.ActionLink("Details", "View", new {id = product.Id})
     </div>
 }
