@@ -539,7 +539,7 @@ header {
 
 
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 1) and (orientation: portrait) {
     body {
         margin: 0;
     }
