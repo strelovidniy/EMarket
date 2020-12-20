@@ -1,14 +1,23 @@
 @model Buyer
 
 @{
-    Layout = null;
+    Layout =  "_Layout";
 }
 
-@using (Html.BeginForm("EditBuyer", "Buyer", FormMethod.Post))
-{
-    @Html.LabelFor(m => m.FirstName, "Change your name:")<br/>
-    @Html.TextBoxFor(m => m.FirstName)
-    @Html.LabelFor(m => m.LastName, "Change your surname:")<br/>
-    @Html.TextBoxFor(m => m.LastName)
-    <button type="submit">Save changes</button>
-}
+<div class="products-container">
+    <img class="editors" data-aos="fade-right" data-aos-duration="1000" src="/images/editors.svg" />
+    <div class="buyer-edit-form" data-aos="fade-in">
+        @using (Html.BeginForm("EditBuyer", "Buyer", FormMethod.Post))
+        {
+            <div class="edit-name">
+                @Html.LabelFor(m => m.FirstName, "Change your name:")<br/>
+                @Html.TextBoxFor(m => m.FirstName)
+            </div>
+            <div class="edit-username">
+                @Html.LabelFor(m => m.LastName, "Change your surname:")<br/>
+                @Html.TextBoxFor(m => m.LastName)
+            </div>
+            <button class="edit-save" type="submit">Save changes</button>
+        }
+    </div>
+</div>

@@ -47,13 +47,14 @@ namespace EMarket.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product product)
         {
-            if (ModelState.IsValid)
-            {
-                await using AppContext db = new AppContext();
-                product.SellerId = Int32.Parse(User.FindFirst("Id")?.Value ?? string.Empty);
-                await db.Products.AddAsync(product);
-                await db.SaveChangesAsync();
-            }
+            string email = User.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
+            await using AppContext db = new AppContext();
+            Seller seller = await db.Sellers.FirstOrDefaultAsync(s => s.Email == email);
+            product.SellerId = seller.Id;
+
+            await db.Products.AddAsync(product);
+            await db.SaveChangesAsync();
+
 
             return RedirectToAction("Index", "Home");
         }
