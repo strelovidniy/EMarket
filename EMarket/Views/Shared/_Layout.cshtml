@@ -78,10 +78,15 @@
                     <div class="user-information">
                         <div class="name-surname">
                             <h3>@User.FindFirst(u => u.Type == ClaimTypes.GivenName).Value</h3>
+
                             <h3>@User.FindFirst(u => u.Type == ClaimTypes.Surname).Value</h3>
+                            <img class="settings" src="/icons/settings.svg" />
+
                         </div>
                     </div>
-                    <a asp-action="Logout" asp-controller="Account" class="button logout-button">Log out</a>
+                    <div class="user-settings">
+                        <a asp-action="Logout" asp-controller="Account" class="button logout-button">Log out</a>
+                    </div>
                 </div>
             </div>
         </header>
@@ -95,7 +100,9 @@
     <div class="mobile-nav-wrapper">
         <div class="mobile-nav-body">
             <div class="close-mobile">
-                <img src="/icons/close.svg" />
+                <img class="settings" src="/icons/settings.svg" />
+
+                <img src="/icons/close.svg"/>
             </div>
             <div class="mobile-nav-center">
                 @if (User.Identity == null || !User.Claims.Any())
@@ -129,6 +136,7 @@
                                 <div class="name-surname">
                                     <h3>@User.FindFirst(u => u.Type == ClaimTypes.GivenName).Value</h3>
                                     <h3>@User.FindFirst(u => u.Type == ClaimTypes.Surname).Value</h3>
+
                                 </div>
                             </div>
                             <a asp-action="Logout" asp-controller="Account" class="button logout-button">Log out</a>
