@@ -100,9 +100,9 @@ namespace EMarket.Controllers
         public async Task<IActionResult> EditProduct(int id)
         {
             await using AppContext db = new AppContext();
+            string email = User.FindFirst(u => u.Type == ClaimTypes.Email).Value;
             Product? product = db.Products.Include(p => p.Seller).AsEnumerable()
-                .FirstOrDefault(p => p.Id == id && p.Seller.Email
-                    == User.FindFirst(u => u.Type == ClaimTypes.Email).Value);
+                .FirstOrDefault(p => p.Id == id && p.Seller.Email == email);
             if (product == null)
                 return View("Error", new ErrorViewModel() { RequestId = "404 Not Found." });
             return View(product);
@@ -113,11 +113,23 @@ namespace EMarket.Controllers
         {
             await using AppContext db = new AppContext();
             string email = User?.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
-            var user = db.Sellers.FirstOrDefault(p =>
-                 p.Email == email);
-
-            return View(product);
+            var productToEdit = await db.Products.FirstOrDefaultAsync(p => p.Id == product.Id);
+            productToEdit.Count = product.Count;
+            productToEdit.Description = product.Description;
+            productToEdit.Quantity = product.Quantity;
+            productToEdit.Price = product.Price;
+            productToEdit.Name = product.Name;
+            await db.SaveChangesAsync();
+            return View("Products");
         }
 
+        public async Task<IActionResult> Products()
+        {
+            await using AppContext db = new AppContext();
+            string email = User?.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
+            var products = db.Products.Include(p => p.Seller)
+                .Where(p => p.Seller.Email == email).ToList();
+            return View(products);
+        }
     }
 }
