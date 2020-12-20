@@ -1,18 +1,25 @@
 ﻿@using EMarket.Controllers
 @model LoginModel
 
-<h2>Login</h2>
+<div class="products-container">
+    <div class="login-wrapper">
+        <div class="login-form">
+            <h2>Login</h2>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
-    <div class="validation" asp-validation-summary="ModelOnly"></div>
-    @Html.LabelFor(m => m.Email, "Enter email")<br/>
-    @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
-    @Html.LabelFor(m => m.Password, "Enter password")<br/>
-    @Html.TextBoxFor(m => m.Password, new {type = "password"})<br/>
-    @Html.DropDownList("role", new SelectList(Enum.GetValues<Role>()), new { name="role"})
-    <br />
-    <div class="form-group">
-        <input type="submit" value="Sign in" class="btn btn-outline-dark" />
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                <div class="validation" asp-validation-summary="ModelOnly"></div>
+                @Html.LabelFor(m => m.Email, "Enter email")<br/>
+                @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
+                @Html.LabelFor(m => m.Password, "Enter password")<br/>
+                @Html.TextBoxFor(m => m.Password, new {type = "password"})<br/>
+                @Html.DropDownList("role", new SelectList(Enum.GetValues<Role>()), new { name="role"})
+                <br />
+                <div class="form-group">
+                    <input class="edit-save" type="submit" value="Sign in" class="btn btn-outline-dark" />
+                </div>
+            }
+        </div>
+
     </div>
-}
+</div>
