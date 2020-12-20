@@ -17,9 +17,12 @@ namespace EMarket.Controllers
 {
     public class SellerController : Controller
     {
-        ISearchService searchService = new SearchService();
+        private ISearchService searchService = new SearchService();
         public async Task<IActionResult> Index()
         {
+            if (!User.IsInRole("Seller"))
+                return RedirectToAction("RegisterAsSeller", "Account");
+
             await using AppContext db = new AppContext();
             string email = User.FindFirst(u
                 => u.Type == ClaimTypes.Email)!.Value;
@@ -31,6 +34,7 @@ namespace EMarket.Controllers
                 .ThenInclude(po => po.Product).ToList();
             if (orders == null)
                 return View(new List<Order>());
+
             return View(orders);
         }
 
