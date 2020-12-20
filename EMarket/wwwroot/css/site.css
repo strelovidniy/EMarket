@@ -29,6 +29,9 @@
     width: 0;
 }
 
+a:hover {
+    text-decoration: none;
+}
 
 .scrollpath {
     position: fixed;
@@ -55,7 +58,7 @@
     width: 1240px;
     max-width: 1240px;
     min-width: 1240px;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     flex-direction: column;
 }
@@ -438,7 +441,7 @@ header{
 }
 
 .products-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .meat {
@@ -706,15 +709,49 @@ header{
 }
 
 
-/* Login page */
+/* Empty cart */
+.empty-cart-title {
+    text-align: center;
+    margin-top: 10rem;
+}
 
+.sad_person {
+    width: 400px;
+    object-fit: contain;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
 
+.cloud {
+    position: absolute;
+    width: 60px;
+    object-fit: contain;
+    bottom: 50%;
+    left: 40%;
+    animation: cloud 10s ease-in-out infinite;
+}
+
+@keyframes cloud {
+    0%,100% {
+        bottom: 60%;
+        left: 40%;
+    }
+    50% {
+        bottom: 55%;
+        left: 55%;
+    }
+}
+
+.empty_cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
 @media (orientation: portrait) {
-
-    .progressbar,
-    .scrollpath {
+    .progressbar, .scrollpath {
         display: none;
     }
 
@@ -722,9 +759,25 @@ header{
         margin: 0;
     }
 
+    .empty_cart {
+        width: 350px;
+        height: 100%;
+    }
+
+    .empty-cart-title {
+        margin-top: 3rem;
+    }
+
     .container {
         justify-content: center;
         align-items: center;
+        width: 360px;
+        min-width: 360px;
+        max-width: 360px;
+    }
+
+    .sad_person {
+        width: 400px;
     }
 
     .content {
@@ -898,8 +951,9 @@ header{
         height: 550px;
     }
 
-    .animals {
-        margin-left: 5rem;
+    .list-element-product {
+        width: 350px;
+        height: 350px;
     }
 
-    }
+}
