@@ -35,7 +35,6 @@
 
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .navigation ul li {
@@ -51,7 +50,7 @@ body {
     overflow: hidden;
 }
 
-/* Home page */
+/* Logins and regs */
 .authentication-buttons-wrapper {
     margin-top: 2rem;
     width: 100%;
@@ -140,8 +139,14 @@ body {
     cursor: pointer;
 }
 
+.production-button {
+    color: var(--secondary-aqua) !important;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .register-seller-button {
-    color: var(--secondary-aqua)!important;
+    color: var(--secondary-aqua) !important;
     background-color: transparent;
     cursor: pointer;
 }
@@ -241,6 +246,98 @@ body {
 .close-modal img {
     width: 20px;
     height: 20px;
+}
+
+header {
+    margin-top: 2rem;
+}
+
+.name-surname {
+    display: flex;
+}
+
+.name-surname h3 {
+    margin: 0 .3rem;
+    font-weight: 700;
+}
+
+.logout-button {
+    color: var(--secondary-blue);
+}
+
+.user {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+/* Home page */
+.searchbar {
+    margin: 3rem 0;
+    width: 50%;
+}
+
+.searchbar form {
+    width: 50%;
+    position: relative;
+    height: 60px;
+    overflow: hidden;
+}
+
+.searchbar input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    padding-bottom: 0;
+
+}
+
+.searchbar label {
+    color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid black;
+}
+
+.searchbar label::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 100%;
+    width: 100%;
+    border-bottom: 3px solid var(--secondary-blue);
+    transform: translateX(-100%);
+
+    transition: transform .3s ease;
+}
+
+.search_label-name{
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    transition: all .3s ease;
+}
+
+.searchbar input:focus + .search-label .search_label-name, .searchbar input:valid + .search-label .search_label-name {
+    transform: translateY(-150%);
+    font-size: 14px;
+    color: var(--secondary-blue);
+}
+
+.searchbar input:focus + .search-label::after, .searchbar input:valid + .search_label-name::after {
+    transform: translateX(0%);
+
+}
+
+.searchbar input:focus {
+    outline: none;
 }
 
 /* Register page */
@@ -442,11 +539,11 @@ body {
 
 
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
     body {
         margin: 0;
     }
-    
+
     .desktop-nav {
         display: none;
     }
@@ -469,7 +566,6 @@ body {
         left: 0;
         height: 100vh;
         width: 100vw;
-
         display: none;
         justify-content: center;
         align-items: center;
@@ -488,7 +584,6 @@ body {
         transform: scale(0);
         display: none;
         flex-direction: column;
-
         transition: .3s ease-in-out all;
     }
 
@@ -497,11 +592,11 @@ body {
         margin-right: 1.5rem;
     }
 
-    .close-mobile img {
-        float: right;
-        width: 25px;
-        object-fit: contain;
-    }
+        .close-mobile img {
+            float: right;
+            width: 25px;
+            object-fit: contain;
+        }
 
     .mobile-buttons h3 {
         text-align: center;
@@ -562,15 +657,12 @@ body {
         display: none;
     }
 
-    .register-wrapper{
+    .register-wrapper {
         width: 350px;
         z-index: -1;
     }
 
-    .register-wrapper form {
-        width: 300px;
-    }
-
-
-
+        .register-wrapper form {
+            width: 300px;
+        }
 }
