@@ -8,12 +8,20 @@
 <h2>Products</h2>
 @foreach (var product in Model)
 {
-    <div>
+    <div class="list-of-products" data-aos="fade-up">
 
-        <p>@product.Name</p>
-        <p>@product.Price</p>
-        <p>@product.Quantity</p>
-        <p>@product.Description</p>
-        @Html.ActionLink("Details", "View", new {id = product.Id})
+        <div class="list-element-product" data-aos="fade-up">
+            <div class="product-info">
+                <h1 class="product-title">@product.Name</h1>
+                <p class="product-description">@product.Description</p>
+                <p class="product-price">@product.Price $</p>
+            </div>
+            <div class="product-button">
+                <a asp-action="View" asp-controller="Product" asp-route-id="@product.Id">View</a>
+            </div>
+        </div>
+
+    </div>
+    <div>
     </div>
 }
