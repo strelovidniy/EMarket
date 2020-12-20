@@ -11,8 +11,27 @@
     <title>title</title>
 </head>
 <body>
-<div>
-      
-</div>
+<table class="table table-sm table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Seller FirstName LastName</th>
+            <th scope="col">Count</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>ye
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.Seller.FirstName @order.Seller.LastName</td>
+                <td>@order.ProductOrder.Count</td>
+                <td>@order.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
 </body>
 </html>
