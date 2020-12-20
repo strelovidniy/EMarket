@@ -54,7 +54,7 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditProfile()
+        public IActionResult EditSeller()
         {
             return View(new Seller()
             {
@@ -64,13 +64,14 @@ namespace EMarket.Controllers
             });
         }
         [HttpPost]
-        public async Task<IActionResult> EditProfile(Seller seller)
+        public async Task<IActionResult> EditSeller(Seller seller)
         {
             if (ModelState.IsValid)
             {
                 await using AppContext db = new AppContext();
+                string email = User?.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
                 var user = await db.Sellers.FirstOrDefaultAsync(p =>
-                    p.Email == User.FindFirst(u => u.Type == ClaimTypes.Email).Value);
+                    p.Email == email);
                 user.FirstName = seller.FirstName;
                 user.LastName = seller.LastName;
                 await db.SaveChangesAsync();
@@ -78,10 +79,9 @@ namespace EMarket.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, seller.FirstName+" "+seller.LastName),
-                    new Claim(ClaimTypes.Email, seller.Email),
+                    new Claim(ClaimTypes.Email, email),
                     new Claim(ClaimTypes.GivenName, seller.FirstName),
                     new Claim(ClaimTypes.Surname, seller.LastName),
-                    new Claim(ClaimTypes.Locality, seller.City),
                     new Claim(ClaimTypes.Role, "Seller")
                 };
                 ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,
