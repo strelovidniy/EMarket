@@ -37,12 +37,7 @@
             </p>
             <p>
                 @Html.LabelFor(product => product.Category, "Category: ")
-                <select asp-for="@Model.CategoryId">
-                    @foreach (var category in ViewBag.Categories)
-                    {
-                        <option value="@category.Id">@category.ToString()</option>
-                    }
-                </select>
+                @Html.DropDownListFor(product => product.Category, new SelectList(Enum.GetValues(typeof(Category))))
             </p>
 
             <button type="submit">Add</button>

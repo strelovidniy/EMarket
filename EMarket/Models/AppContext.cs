@@ -11,7 +11,6 @@ namespace EMarket.Models
     public class AppContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
         public DbSet<Buyer> Buyers { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Order> Orders { get; set; }

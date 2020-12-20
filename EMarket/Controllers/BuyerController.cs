@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EMarket.Controllers
 {
-    
     public class BuyerController : Controller
     {
         public async Task<IActionResult> Index()
@@ -26,6 +25,16 @@ namespace EMarket.Controllers
                 .ThenInclude(po => po.Product).ToList();
             return View(orders);
         }
+
+        public async Task<IActionResult> Account()
+        {
+            await using AppContext db = new AppContext();
+            Buyer buyer = await db.Buyers.FirstOrDefaultAsync(b => b.Email ==
+                                                                   User.FindFirst(u => u.Type == ClaimTypes.Email)
+                                                                       .Value);
+            return View(buyer);
+        }
+
         [HttpGet]
         public IActionResult EditBuyer()
         {
