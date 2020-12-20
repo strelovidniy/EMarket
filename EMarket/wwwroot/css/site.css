@@ -898,8 +898,9 @@ header{
         height: 550px;
     }
 
-    .animals {
-        margin-left: 5rem;
+    .list-element-product {
+        width: 350px;
+        height: 350px;
     }
 
-    }
+}
