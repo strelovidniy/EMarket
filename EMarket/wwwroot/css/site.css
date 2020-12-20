@@ -171,6 +171,7 @@ body {
     transition: .3s ease all;
 }
 
+
 .wheat-icon {
     width: 30px;
     height: 30px;
@@ -830,9 +831,42 @@ header{
     z-index: -10;
 }
 
+.login-wrapper {
+    padding: 2rem 0;
+    width: 450px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 30px;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+}
+
+.login-form {
+    transform: translateY(-90%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+}
+
+    .login-wrapper form {
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
 /* Products cart */
 .products-container {
-    height: calc(100% - 7rem);
+    height: calc(100vh - 7rem);
     width: 1240px;
     max-width: 1240px;
     min-width: 1240px;
