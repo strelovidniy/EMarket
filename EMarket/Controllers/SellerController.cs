@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using EMarket.Models;
+using EMarket.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +17,7 @@ namespace EMarket.Controllers
 {
     public class SellerController : Controller
     {
+        ISearchService searchService = new SearchService();
         public async Task<IActionResult> Index()
         {
             await using AppContext db = new AppContext();
@@ -91,5 +93,23 @@ namespace EMarket.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult EditProduct(int id)
+        {
+            Product product =  searchService.GetProductById(id);
+            return View(product);
+        }
+        
+        [HttpPost]
+        public IActionResult EditProduct(Product product)
+        {   using AppContext db = new AppContext();
+            string email = User?.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
+            var user =  db.Sellers.FirstOrDefault(p =>
+                p.Email == email);
+            user.Products[user.Products.FindIndex(prod => prod.Id == product.Id)] = product;
+            return View(product);
+        }
+
     }
 }
