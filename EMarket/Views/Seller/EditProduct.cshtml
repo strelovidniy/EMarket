@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@using Microsoft.Extensions.WebEncoders.Testing
+@model Product
 
 @{
     ViewBag.Title = "title";
@@ -8,31 +9,32 @@
 
 <html>
 <head>
-    <title>Product adding</title>
+    <title>Product editing</title>
 </head>
 <body>
     <div>
         @using (Html.BeginForm("EditProduct", "Seller", FormMethod.Post))
         {
+            @Html.TextBoxFor(p => p.Id, new { type = "hidden" })
             <p>
                 @Html.LabelFor(pr => pr.Name, "Name of product: ")
-                @Html.TextBoxFor(pr => pr.Name)
+                @Html.TextBoxFor(pr => pr.Name, new { value = Model.Name })
             </p>
             <p>
                 @Html.LabelFor(pr => pr.Description, "Description of the product: ")
-                @Html.TextBoxFor(pr => pr.Description)
+                @Html.TextBoxFor(pr => pr.Description, new { value = Model.Description })
             </p>
             <p>
                 @Html.LabelFor(pr => pr.Quantity, "Quantity: ")
-                @Html.TextBoxFor(pr => pr.Quantity)
+                @Html.TextBoxFor(pr => pr.Quantity, new { value = Model.Quantity })
             </p>
             <p>
-                @Html.LabelFor(pr => pr.Count, "Count: ", new { type = "number" })
-                @Html.TextBoxFor(pr => pr.Count)
+                @Html.LabelFor(pr => pr.Count, "Count: ")
+                @Html.TextBoxFor(pr => pr.Count, new { value = Model.Count, type = "number" })
             </p>
             <p>
                 @Html.LabelFor(pr => pr.Price, "Price: ")
-                @Html.TextBoxFor(pr => pr.Price)
+                @Html.TextBoxFor(pr => pr.Price, new { value = Model.Price })
             </p>
             <button type="submit">Save</button>
         }

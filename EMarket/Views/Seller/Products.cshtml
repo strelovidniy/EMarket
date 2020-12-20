@@ -1,0 +1,14 @@
+﻿@model System.Collections.Generic.List<EMarket.Models.Product>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Products</h2>
+@foreach (var item in Model)
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}

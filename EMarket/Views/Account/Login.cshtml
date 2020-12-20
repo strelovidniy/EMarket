@@ -1,21 +1,18 @@
 ﻿@using EMarket.Controllers
 @model LoginModel
 
+<h2>Login</h2>
 
-<div class="container">
-    <div class="login-wrapper">
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-        {
-            <div class="validation" asp-validation-summary="ModelOnly"></div>
-            @Html.LabelFor(m => m.Email, "Enter email")<br/>
-            @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
-            @Html.LabelFor(m => m.Password, "Enter password")<br/>
-            @Html.TextBoxFor(m => m.Password)<br/>
-            @Html.DropDownList("role", new SelectList(Enum.GetValues<Role>()), new { name="role"})
-            <br />
-            <div class="form-group">
-                <input type="submit" value="Sign in" class="btn btn-outline-dark" />
-            </div>
-        }
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    @Html.LabelFor(m => m.Email, "Enter email")<br/>
+    @Html.TextBoxFor(m => m.Email, new {type = "email"})<br/>
+    @Html.LabelFor(m => m.Password, "Enter password")<br/>
+    @Html.TextBoxFor(m => m.Password, new {type = "password"})<br/>
+    @Html.DropDownList("role", new SelectList(Enum.GetValues<Role>()), new { name="role"})
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Sign in" class="btn btn-outline-dark" />
     </div>
-</div>
+}
