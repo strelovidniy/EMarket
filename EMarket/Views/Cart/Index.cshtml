@@ -7,42 +7,46 @@
     Cart cart = ViewBag.Cart as Cart;
 }
 
-<h1>Cart</h1>
+<div class="container">
+    <div class="cart-wrapper-full">
+        <h1>Cart</h1>
 
-<table class="table table-sm table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Seller</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Count</th>
-            <th scope="col">Price</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model)
-        {
+        <table class="table table-sm table-striped">
+            <thead class="thead-dark">
             <tr>
-                <td>@product.Key.Name</td>
-                <td>@product.Key.Seller.FirstName @product.Key.Seller.LastName</td>
-                <td>@product.Key.Quantity</td>
-                <td>@product.Value</td>
-                <td>@product.Key.Price</td>
-                <th>
-                    @Html.ActionLink("Delete", "Delete", "Cart", new { id = product.Key.Id })|
-                    @Html.ActionLink("+", "Add", "Cart", new { id = product.Key.Id })|
-                    @Html.ActionLink("-", "Reduce", "Cart", new { id = product.Key.Id })
-                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Seller</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Count</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="3" class="text-right">Total</td>
-            <td class="text-right"></td>
-            <td class="text-right">@cart.TotalPrice</td>
-        </tr>
-    </tfoot>
+            </thead>
+            <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Key.Name</td>
+                    <td>@product.Key.Seller.FirstName @product.Key.Seller.LastName</td>
+                    <td>@product.Key.Quantity</td>
+                    <td>@product.Value</td>
+                    <td>@product.Key.Price</td>
+                    <th>
+                        @Html.ActionLink("Delete", "Delete", "Cart", new { id = product.Key.Id })|
+                        @Html.ActionLink("+", "Add", "Cart", new { id = product.Key.Id })|
+                        @Html.ActionLink("-", "Reduce", "Cart", new { id = product.Key.Id })
+                    </th>
+                </tr>
+            }
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="text-right">Total</td>
+                <td class="text-right"></td>
+                <td class="text-right">@cart.TotalPrice</td>
+            </tr>
+            </tfoot>
 
-</table>
+        </table>
+    </div>
+</div>

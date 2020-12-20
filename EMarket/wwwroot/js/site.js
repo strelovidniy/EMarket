@@ -138,3 +138,7 @@ $(".settings").mouseover(function () {
 $(".settings").mouseleave(function () {
     $(this).css("transform", "rotate(-360deg");
 });
+
+$(".home").click(function() {
+    window.location.href = "/home/index";
+});
