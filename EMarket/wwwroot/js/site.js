@@ -1,4 +1,5 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+    AOS.init();
     if (location.pathname == "/Account/RegisterAsBuyer" || location.pathname == "/Account/RegisterAsSeller") {
         $(".container").hide();
     }

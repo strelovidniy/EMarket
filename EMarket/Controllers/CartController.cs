@@ -33,7 +33,7 @@ namespace EMarket.Controllers
                 cart.TotalPrice += product.Price * count;
 
             HttpContext.Session.Set(cart);
-            return RedirectToAction("Index", "Product", new { id });
+            return RedirectToAction("View", "Product", new { id });
         }
 
         public async Task<IActionResult> Index()

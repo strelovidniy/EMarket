@@ -1,17 +1,17 @@
-﻿@model Product
+﻿@model System.Collections.Generic.List<EMarket.Models.Product>
 
 @{
-    ViewData["Title"] = Model.Name;
+    ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-
-<h1>@Model.Name</h1>
-<p><strong>@Model.Category</strong></p>
-<p>@Model.Description</p>
-<p>Price <strong>@Model.Price</strong></p>
-<form action="@Url.Action("AddItem", "Cart")" method="get">
-    <input type="hidden" name="Id" value="@Model.Id" />
-    <input type="number" name="count" min="1" max="@Model.Count" />
-    <button class="btn btn-outline-success" type="submit">Add to the cart</button>
-</form>
+<h2>Products</h2>
+@foreach (var product in Model)
+{
+    <div>
+        <p>@product.Name</p>
+        <p>@product.Price</p>
+        <p>@product.Quantity</p>
+        <p>@product.Description</p>
+    </div>
+}

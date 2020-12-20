@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace EMarket.Models
@@ -20,6 +15,8 @@ namespace EMarket.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductOrder>().HasKey(order => new { order.OrderId, order.ProductId });
+            modelBuilder.Entity<Buyer>().HasAlternateKey(b => b.Email);
+            modelBuilder.Entity<Seller>().HasAlternateKey(b => b.Email);
             modelBuilder.Entity<ProductOrder>().HasOne(po => po.Order).WithMany(o => o.ProductOrder)
                 .HasForeignKey(po => po.OrderId).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ProductOrder>().HasOne(po => po.Product).WithMany(p => p.ProductOrder)
