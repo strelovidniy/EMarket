@@ -500,10 +500,10 @@ header {
         transform: rotate(40deg);
     }
     50% {
-        bottom: 400px;
+        bottom: 600px;
     }
     100% {
-        left: 1530px;
+        left: calc(100vw - 180px);
         bottom: 240px;
         transform: rotate(760deg);
     }
@@ -520,13 +520,13 @@ header {
     width: 45px;
     object-fit: contain;
     position: absolute;
-    bottom: 180px;
     opacity: 0;
+    bottom: 6%;
     transition: .3s ease all;
 }
 
 .reg-button-wheat-right {
-    right: 520px;
+    right: 35%;
     transform: scaleX(-1);
 }
 
@@ -535,7 +535,7 @@ header {
 }
 
 .reg-button-wheat-left {
-    left: 520px;
+    left: 35%;           
     transform: scaleX(-1);
     transform: rotate(-45deg);
 }

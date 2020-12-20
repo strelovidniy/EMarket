@@ -84,8 +84,8 @@ $(".reg-button").mouseover(function() {
     $(".reg-button-wheat-right").css("opacity", "1");
     $(".reg-button-wheat-left").css("opacity", "1");
 
-    $(".reg-button-wheat-left").css("left", "480px");
-    $(".reg-button-wheat-right").css("right", "480px");
+    $(".reg-button-wheat-left").css("left", "27%");
+    $(".reg-button-wheat-right").css("right", "27%");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-180deg);");
     $(".reg-button-wheat-right").css("transform", "rotate(-180deg);");
@@ -98,8 +98,8 @@ $(".reg-button").mouseleave(function () {
     $(".reg-button-wheat-right").css("opacity", "0");
     $(".reg-button-wheat-left").css("opacity", "0");
 
-    $(".reg-button-wheat-left").css("left", "520px");
-    $(".reg-button-wheat-right").css("right", "520px");
+    $(".reg-button-wheat-left").css("left", "35%");
+    $(".reg-button-wheat-right").css("right", "35%");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-45deg);");
     $(".reg-button-wheat-lerightft").css("transform", "rotate(-45deg);");
