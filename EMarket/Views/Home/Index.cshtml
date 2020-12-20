@@ -8,93 +8,98 @@
     <div class="container">
         @if (User.Identity != null || User.Claims.Any())
         {
-        <div class="searchbar" data-aos="fade-right" data-aos-delay="500">
-            <form method="POST">
-                <input type="text" name="search" autocomplete="off" required />
-                <label for="name" class="search-label">
-                    <span class="search_label-name">Search</span>
-                </label>
-            </form>
-            <div class="cart-wrapper">
-                <div class="cart-image">
-                    <img src="/icons/cart.svg" />
+            <div class="searchbar" data-aos="fade-right" data-aos-delay="500">
+                <form method="POST">
+                    <input type="text" name="search" autocomplete="off" required />
+                    <label for="name" class="search-label">
+                        <span class="search_label-name">Search</span>
+                    </label>
+                </form>
+                <div class="cart-wrapper">
+                    <div class="cart-image">
+                        <img src="/icons/cart.svg" />
+                    </div>
+                    <span class="cart">
+                        @{
+                            Cart cart;
+                            if (!Context.Session.TryGetCart(out cart))
+                            {
+                                cart = new Cart();
+                            }
+                            if (Context.Session.TryGetCart(out cart) && cart.Items.Count > 0)
+                            {
+                                <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a>
+                            }
+                            else
+                            {
+                                @:Cart is empty
+                            }
+                        }
+                    </span>
                 </div>
-                <span class="cart">
-                    @{
-                        Cart cart;
-                        if (!Context.Session.TryGetCart(out cart))
-                        {
-                            cart = new Cart();
-                        }
-                        if (Context.Session.TryGetCart(out cart) && cart.Items.Count > 0)
-                        {
-                            <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a>
-                        }
-                        else
-                        {
-                            @:Cart is empty
-                        }
-                    }
-                </span>
-            </div>
 
-        </div>
+            </div>
         }
         <div class="farmers">
             <h1 data-aos="fade-down" data-aos-delay="1000">Support locals</h1>
             <img data-aos="zoom-in-up" data-aos-delay="1500" src="/images/home/farmers.jpg" />
         </div>
-        
+
         <div class="products">
             <div class="products-nav">
-
-                <div class="products-card" data-aos="fade-up">
-                    <div class="products-image milk">
-                        <img src="/icons/products/milk.svg"/>
+                <a asp-action="Index" asp-controller="Product" asp-route-category="0">
+                    <div class="products-card" data-aos="fade-up">
+                        <div class="products-image milk">
+                            <img src="/icons/products/milk.svg" />
+                        </div>
+                        <div class="products-title">
+                            Milk
+                        </div>
                     </div>
-                    <div class="products-title">
-                        Milk
+                </a>
+                <a asp-action="Index" asp-controller="Product" asp-route-category="4">
+                    <div class="products-card animals" data-aos="fade-up">
+                        <div class="products-image ">
+                            <img src="/icons/products/animals.svg" />
+                        </div>
+                        <div class="products-title">
+                            Animals
+                        </div>
                     </div>
-                </div>
-
-                <div class="products-card animals" data-aos="fade-up">
-                    <div class="products-image ">
-                        <img src="/icons/products/animals.svg"/>
+                </a>
+                <a asp-action="Index" asp-controller="Product" asp-route-category="1">
+                    <div class="products-card meat" data-aos="fade-up">
+                        <div class="products-image ">
+                            <img src="/icons/products/meat.svg" />
+                        </div>
+                        <div class="products-title">
+                            Meat
+                        </div>
                     </div>
-                    <div class="products-title">
-                        Animals
+                </a>
+                <a asp-action="Index" asp-controller="Product" asp-route-category="2">
+                    <div class="products-card" data-aos="fade-up">
+                        <div class="products-image">
+                            <img src="/icons/products/fruits.svg" />
+                        </div>
+                        <div class="products-title">
+                            Fruits
+                        </div>
                     </div>
-                </div>
-
-                <div class="products-card meat" data-aos="fade-up">
-                    <div class="products-image ">
-                        <img src="/icons/products/meat.svg"/>
+                </a>
+                <a asp-action="Index" asp-controller="Product" asp-route-category="3">
+                    <div class="products-card" data-aos="fade-up">
+                        <div class="products-image">
+                            <img src="/icons/products/vegerables.svg" />
+                        </div>
+                        <div class="products-title">
+                            Vegetables
+                        </div>
                     </div>
-                    <div class="products-title">
-                        Meat
-                    </div>
-                </div>
-
-                <div class="products-card" data-aos="fade-up">
-                    <div class="products-image">
-                        <img src="/icons/products/fruits.svg"/>
-                    </div>
-                    <div class="products-title">
-                        Fruits
-                    </div>
-                </div>
-
-                <div class="products-card" data-aos="fade-up">
-                    <div class="products-image">
-                        <img src="/icons/products/vegerables.svg"/>
-                    </div>
-                    <div class="products-title">
-                        Vegetables
-                    </div>
-                </div>
+                </a>
             </div>
             <div class="list-of-products" data-aos="fade-up">
-                
+
                 <div class="list-element-product" data-aos="fade-up">
                     <div class="product-info">
                         <h1 class="product-title">Product title</h1>
