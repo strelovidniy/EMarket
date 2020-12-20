@@ -25,6 +25,29 @@
 
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
+
+.scrollpath {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: rgba(255, 255, 255, .05);
+}
+
+.progressbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(to top, #12c5cf, #07c26a);
+
+}
 
 
 /* Common */
@@ -47,7 +70,7 @@
 
 body {
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Logins and regs */
@@ -340,6 +363,21 @@ header {
     outline: none;
 }
 
+.farmers {
+    margin-top: 2rem;
+}
+
+.farmers img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.farmers h1 {
+    text-align: center;
+    font-size: 3.3rem;
+    font-weight: 800;
+}
+
 /* Register page */
 .fullscreen-wrapper {
     height: calc(100vh - 2rem);
@@ -488,7 +526,7 @@ header {
 }
 
 .reg-button-wheat-right {
-    right: 750px;
+    right: 520px;
     transform: scaleX(-1);
 }
 
@@ -497,7 +535,7 @@ header {
 }
 
 .reg-button-wheat-left {
-    left: 750px;
+    left: 520px;
     transform: scaleX(-1);
     transform: rotate(-45deg);
 }
@@ -544,6 +582,16 @@ header {
         margin: 0;
     }
 
+    .container {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+    }
+
     .desktop-nav {
         display: none;
     }
@@ -570,6 +618,7 @@ header {
         justify-content: center;
         align-items: center;
         opacity: 0;
+        z-index: 1000;
         transition: .3s ease-in-out all;
         backdrop-filter: blur(2px);
     }
@@ -662,7 +711,20 @@ header {
         z-index: -1;
     }
 
-        .register-wrapper form {
-            width: 300px;
-        }
-}
+    .register-wrapper form {
+        width: 300px;
+    }
+
+    /* Home */
+    .farmers img {
+        margin-top: 3rem;
+        width: 500px;
+    }
+
+    .searchbar {
+        margin-left: 3rem;
+        width: 450px;
+    }
+
+
+    }

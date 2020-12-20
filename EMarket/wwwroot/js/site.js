@@ -1,4 +1,5 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+    AOS.init();
     if (location.pathname == "/Account/RegisterAsBuyer" || location.pathname == "/Account/RegisterAsSeller") {
         $(".container").hide();
     }
@@ -41,6 +42,12 @@
         }, 1000);
     });
 
+    var totalHeight = document.body.scrollHeight - window.innerHeight;
+    $(window).scroll(function() {
+        var progressHeight = ($(window).scrollTop() / totalHeight) * 100;
+        $(".progressbar").css("height", progressHeight + "%");
+    });
+
 });
 
 $(".login-button").hover(function () {
@@ -77,8 +84,8 @@ $(".reg-button").mouseover(function() {
     $(".reg-button-wheat-right").css("opacity", "1");
     $(".reg-button-wheat-left").css("opacity", "1");
 
-    $(".reg-button-wheat-left").css("left", "690px");
-    $(".reg-button-wheat-right").css("right", "690px");
+    $(".reg-button-wheat-left").css("left", "480px");
+    $(".reg-button-wheat-right").css("right", "480px");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-180deg);");
     $(".reg-button-wheat-right").css("transform", "rotate(-180deg);");
@@ -91,8 +98,8 @@ $(".reg-button").mouseleave(function () {
     $(".reg-button-wheat-right").css("opacity", "0");
     $(".reg-button-wheat-left").css("opacity", "0");
 
-    $(".reg-button-wheat-left").css("left", "750px");
-    $(".reg-button-wheat-right").css("right", "750px");
+    $(".reg-button-wheat-left").css("left", "520px");
+    $(".reg-button-wheat-right").css("right", "520px");
 
     $(".reg-button-wheat-left").css("transform", "rotate(-45deg);");
     $(".reg-button-wheat-lerightft").css("transform", "rotate(-45deg);");

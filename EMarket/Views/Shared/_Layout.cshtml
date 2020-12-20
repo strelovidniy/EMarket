@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale = 0.86, maximum-scale=3.0, minimum-scale=0.86">
     <title>@ViewData["Title"] - EMarket</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -16,7 +17,7 @@
     @if (User.Identity == null || !User.Claims.Any())
     {
         <div class="container">
-            <div class="authentication-buttons-wrapper">
+            <div class="authentication-buttons-wrapper" data-aos="fade-down">
                 <div class="header-left">
                     <a asp-action="PointsOfProduction" asp-controller="Map" class="button production-button">Production Points</a>
 
@@ -146,6 +147,7 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
 
