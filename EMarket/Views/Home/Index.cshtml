@@ -2,6 +2,21 @@
 @{
     ViewData["Title"] = "EMarket | Home";
 }
+
+<section class="content">
+    <div class="container">
+        <div class="searchbar">
+            <form method="POST">
+                <input type="text" name="search" autocomplete="off" required />
+                <label for="name" class="search-label">
+                    <span class="search_label-name">Search</span>
+                </label>
+            </form>
+        </div>
+    </div>
+</section>
+
+
 @* <main> *@
 @* *@
 @*     @foreach (var product in Model) *@
