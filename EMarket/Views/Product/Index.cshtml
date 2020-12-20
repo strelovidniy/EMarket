@@ -5,15 +5,19 @@
     Layout = "_Layout";
 }
 
-<h2>Products</h2>
-@foreach (var product in Model)
-{
-    <div>
+<div class="products-container">
+    <div class="products-cart">
+        <h2>Products</h2>
+        @foreach (var product in Model)
+        {
+            <div>
 
-        <p>@product.Name</p>
-        <p>@product.Price</p>
-        <p>@product.Quantity</p>
-        <p>@product.Description</p>
-        @Html.ActionLink("Details", "View", new {id = product.Id})
+                <p>@product.Name</p>
+                <p>@product.Price</p>
+                <p>@product.Quantity</p>
+                <p>@product.Description</p>
+                @Html.ActionLink("Details", "View", new {id = product.Id})
+            </div>
+        }
     </div>
-}
+</div>
