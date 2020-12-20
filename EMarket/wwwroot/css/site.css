@@ -17,11 +17,9 @@
     width: 1240px;
     max-width: 1240px;
     min-width: 1240px;
-    height: 100%;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -33,20 +31,74 @@
     color: var(--secondary-blue);
 }
 
+body {
+    height: 100vh;
+    overflow: hidden;
+}
 
 /* Home page */
 .authentication-buttons-wrapper {
     margin-top: 2rem;
     width: 100%;
+    height: 50px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
+.authentication-buttons {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    width: 400px;
+}
+
+.wheat-login-left,
+.wheat-login-right {
+    top: 0;
+    width: 35px;
+    object-fit: contain;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    transition: .3s ease all;
+}
+
+.wheat-login-left {
+    right: 0;
+    transform: rotate(-35deg);
+}
+
+.wheat-login-right {
+    right: 0;
+    transform: scaleX(-1);
+}
+
+.wheat-login-right img{
+    transform: rotate(-35deg);
+}
+
+.wheat-login {
+    top: 30px;
+    position: absolute;
+    width: 35px;
+    object-fit: contain;
+    right: 500px;
+    opacity: 0;
+    transform: rotate(5deg);
+    z-index: -1;
+    transition: .3s ease all;
+}
+
 .button {
     border: none;
-    padding: .5rem 2rem;
+    margin: 0 1.5rem;
 }
 
 .button:hover {
@@ -54,10 +106,12 @@
 }
 
 .login-button {
-    margin-right: 1rem;
     color: white!important;
     background-color: var(--main-color);
     border-radius: 30px;
+    padding: .5rem 2rem;
+    width: 104px;
+    transition: .3s ease all;
 }
 
 .wheat-icon {
@@ -75,6 +129,104 @@
     color: var(--secondary-aqua)!important;
     background-color: transparent;
     cursor: pointer;
+}
+
+.login-modal {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-popup {
+    opacity: 0;
+    top: -200%;
+    transform: translateY(-50%);
+    background-color: white;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    width: 700px;
+    height: 400px;
+    border-radius: 30px;
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity .3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.login-popup.active {
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
+}
+
+.login-button-popup {
+    background-color: var(--main-color);
+    border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    transition: .3s ease all;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-button-gmail {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: .3s ease all;
+}
+
+
+.login-button-popup:hover,
+.login-button-gmail:hover{
+    transform: scale(1.05);
+}
+
+.login-button-popup img {
+    width: 50px;
+    object-fit: contain;
+}
+
+.login-popup-blur {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    opacity: 0;
+
+    transition: .3s all ease-in-out;
+}
+
+.login-popup-buttons {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 2rem;
+}
+
+.close-modal {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.close-modal img {
+    width: 20px;
+    height: 20px;
 }
 
 /* Register page */
@@ -202,8 +354,8 @@
         bottom: 400px;
     }
     100% {
-        left: 1370px;
-        bottom: 250px;
+        left: 1530px;
+        bottom: 240px;
         transform: rotate(760deg);
     }
 }
@@ -219,13 +371,13 @@
     width: 45px;
     object-fit: contain;
     position: absolute;
-    bottom: 130px;
+    bottom: 180px;
     opacity: 0;
     transition: .3s ease all;
 }
 
 .reg-button-wheat-right {
-    right: 644px;
+    right: 750px;
     transform: scaleX(-1);
 }
 
@@ -233,8 +385,8 @@
     transform: rotate(-45deg);
 }
 
-    .reg-button-wheat-left {
-        left: 644px;
-        transform: scaleX(-1);
-        transform: rotate(-45deg);
-    }
+.reg-button-wheat-left {
+    left: 750px;
+    transform: scaleX(-1);
+    transform: rotate(-45deg);
+}

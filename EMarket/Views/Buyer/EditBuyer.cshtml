@@ -1,0 +1,14 @@
+@model Buyer
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("EditBuyer", "Buyer", FormMethod.Post))
+{
+    @Html.LabelFor(m => m.FirstName, "Change your name:")<br/>
+    @Html.TextBoxFor(m => m.FirstName)
+    @Html.LabelFor(m => m.LastName, "Change your surname:")<br/>
+    @Html.TextBoxFor(m => m.LastName)
+    <button type="submit">Save changes</button>
+}

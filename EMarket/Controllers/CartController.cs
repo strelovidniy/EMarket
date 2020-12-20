@@ -11,6 +11,7 @@ namespace EMarket.Controllers
 {
     public class CartController : Controller
     {
+        [HttpGet]
         public async Task<IActionResult> AddItem(int id, int count = 1)
         {
             Product product;

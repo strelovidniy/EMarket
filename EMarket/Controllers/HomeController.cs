@@ -12,15 +12,15 @@ using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
-    
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        
+
         ISearchService searchService = new SearchService();
         public IActionResult Index(string query)
         {
-            if (query!=null)
+            if (query != null)
             {
                 return View(searchService.GetAllProductsByName(query));
             }
@@ -30,7 +30,7 @@ namespace EMarket.Controllers
         {
             _logger = logger;
         }
-        
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
