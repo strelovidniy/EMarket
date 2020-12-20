@@ -9,7 +9,7 @@
   <Identity
     Name="f64c284e-e190-46d1-8993-853b90efcad5"
     Publisher="CN=romad"
-    Version="1.0.1.0" />
+    Version="1.0.2.0" />
 
   <mp:PhoneIdentity PhoneProductId="f64c284e-e190-46d1-8993-853b90efcad5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -35,7 +35,7 @@
         DisplayName="EMarket"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="DesktopApp"
+        Description="Desktop EMarket App"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
