@@ -5,8 +5,10 @@
 
     $(".login-button").click(function () {
         $(".login-modal").css("display", "flex");
-        $(".login-popup").addClass("active");
-        $(".login-popup-blur").css("opacity", "1");
+        setTimeout(function () {
+            $(".login-popup").addClass("active");
+            $(".login-popup-blur").css("opacity", "1");
+        }, 10);
     });
 
     $(".close-modal").click(function () {
