@@ -11,7 +11,7 @@
 <p>@Model.Description</p>
 <p>Price <strong>@Model.Price</strong></p>
 <form action="@Url.Action("AddItem", "Cart")" method="get">
-    <input type="hidden" name="Id" value="@Model.Id"/>
-    <input type="number" name="count" min="1" ></input>
-    <button class="btn btn-outline-success" type="submit" >Add to the cart</button>
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="number" name="count" min="1" max="@Model.Count" />
+    <button class="btn btn-outline-success" type="submit">Add to the cart</button>
 </form>

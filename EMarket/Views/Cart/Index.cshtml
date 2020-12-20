@@ -17,6 +17,7 @@
             <th scope="col">Quantity</th>
             <th scope="col">Count</th>
             <th scope="col">Price</th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,11 @@
                 <td>@product.Key.Quantity</td>
                 <td>@product.Value</td>
                 <td>@product.Key.Price</td>
+                <th>
+                    @Html.ActionLink("Delete", "Delete", "Cart", new { id = product.Key.Id })|
+                    @Html.ActionLink("+", "Add", "Cart", new { id = product.Key.Id })|
+                    @Html.ActionLink("-", "Reduce", "Cart", new { id = product.Key.Id })
+                </th>
             </tr>
         }
     </tbody>
