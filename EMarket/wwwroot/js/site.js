@@ -1,5 +1,5 @@
 ﻿$(document).ready(function() {
-    if (location.pathname == "/Account/RegisterAsBuyer") {
+    if (location.pathname == "/Account/RegisterAsBuyer" || location.pathname == "/Account/RegisterAsSeller") {
         $(".container").hide();
     }
 

@@ -390,3 +390,34 @@ body {
     transform: scaleX(-1);
     transform: rotate(-45deg);
 }
+
+/* Seller registration */
+.seller_registration_farmers {
+    width: 500px;
+    object-fit: contain;
+    z-index: -10;
+    position: absolute;
+    bottom: 20px;
+    right: 5px;
+}
+
+.chicken {
+    width: 200px;
+    object-fit: contain;
+    z-index: -10;
+    position: absolute;
+    left: 100px;
+}
+
+.chicken_graphics {
+    position: absolute;
+    top: 0;
+}
+
+.volonteer {
+    width: 700px;
+    object-fit: contain;
+    position: absolute;
+    left: -10%;
+    bottom: -5%;
+}
