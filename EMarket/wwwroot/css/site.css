@@ -11,6 +11,17 @@
     --secondary-blue: #067cba;
 }
 
+@media screen and (min-width: 1080px) and (max-width: 1920px) {
+    .desktop-nav {
+        display: block;
+    }
+    .mobile-nav {
+        display: none;
+    }
+
+}
+
+
 
 /* Common */
 .container {
@@ -420,4 +431,123 @@ body {
     position: absolute;
     left: -10%;
     bottom: -5%;
+}
+
+
+
+
+
+
+/* -------------------------------------------------- MOBILE -------------------------------------------------- */
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+    body {
+        min-width: 360px;
+        width: 100vw;
+        max-width: 736px;
+
+        height: auto;
+    }
+
+    body, html {
+        overflow-x: hidden;
+    }
+
+    
+    .desktop-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: block;
+    }
+
+    .menu {
+        margin-top: .5rem;
+        margin-left: .5rem;
+        width: 30px;
+        object-fit: contain;
+    }
+
+    .mobile-nav-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100vw;
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: .3s ease-in-out all;
+        backdrop-filter: blur(2px);
+    }
+
+    .mobile-nav-body {
+        background-color: white;
+        width: 350px;
+        height: 700px;
+        border-radius: 30px;
+        -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+        box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+        transform: scale(0);
+        display: none;
+        flex-direction: column;
+
+        transition: .3s ease-in-out all;
+    }
+
+    .close-mobile {
+        margin-top: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .close-mobile img {
+        float: right;
+        width: 25px;
+        object-fit: contain;
+    }
+
+    .mobile-buttons h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .mobile-login-farm {
+        width: 100px;
+        object-fit: contain;
+        background-color: var(--main-color);
+        border-radius: 100%;
+        padding: 1.2rem;
+    }
+
+    .mobile-login-gmail {
+        width: 100px;
+        object-fit: contain;
+    }
+
+    .mobile-login-buttons {
+        width: 250px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .mobile-register-buttons {
+        margin: 2rem 0;
+        height: 100px;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mobile-nav-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        /* transform: translateY(-25%); */
+    }
 }

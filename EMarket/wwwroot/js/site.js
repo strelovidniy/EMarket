@@ -19,7 +19,26 @@
 
     });
 
-    
+    $(".menu").click(function() {
+        $(".mobile-nav-wrapper").css("display", "flex");
+        $(".mobile-nav-wrapper").css("opacity", "1");
+
+        $(".mobile-nav-body").css("display", "flex");
+        setTimeout(function () {
+            $(".mobile-nav-body").css("transform", "scale(1)");
+        }, 1);
+    });
+
+    $(".close-mobile").click(function () {
+        $(".mobile-nav-wrapper").css("opacity", "0");
+
+        $(".mobile-nav-body").css("transform", "scale(0)");
+        setTimeout(function () {
+            $(".mobile-nav-body").hide();
+            $(".mobile-nav-wrapper").hide();
+        }, 1000);
+    });
+
 });
 
 $(".login-button").hover(function () {

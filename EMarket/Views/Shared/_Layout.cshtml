@@ -10,57 +10,95 @@
 </head>
 <body>
 
-@if (User.Identity == null || !User.Claims.Any())
-{
-    <div class="container">
-        <div class="authentication-buttons-wrapper">
-            <div class="header-left">
-                <a asp-action="PointsOfProduction" asp-controller="Map" class="button register-button">Production Points</a>
+<div class="desktop-nav">
+    @if (User.Identity == null || !User.Claims.Any())
+    {
+        <div class="container">
+            <div class="authentication-buttons-wrapper">
+                <div class="header-left">
+                    <a asp-action="PointsOfProduction" asp-controller="Map" class="button register-button">Production Points</a>
 
-            </div>
-            <div class="authentication-buttons">
-                <a class="button login-button">
-                    login
-                    <div class="wheat-login-left">
-                        <img src="icons/wheat.svg" />
-                    </div>
-                    <div class="wheat-login-right">
-                        <img src="icons/wheat.svg" />
-                    </div>
-                </a>
-                
-                <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
-                <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
-            </div>
-        </div>
-        
-        <div class="login-modal">
-            <div class="login-popup">
-                <div class="close-modal">
-                    <img src="/icons/close.svg" />
                 </div>
-                <h1>Where to login?</h1>
-                <div class="login-popup-buttons">
-                    <a asp-action="Login" asp-controller="Account">
-                        <div class="login-button-popup">
-                            <img src="/icons/farmer.svg"/>
+                <div class="authentication-buttons">
+                    <a class="button login-button">
+                        login
+                        <div class="wheat-login-left">
+                            <img src="icons/wheat.svg" />
+                        </div>
+                        <div class="wheat-login-right">
+                            <img src="icons/wheat.svg" />
                         </div>
                     </a>
-                    <div class="login-button-gmail">
-                        <img src="/icons/gmail.svg"/>
-                    </div>
+                
+                    <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
+                    <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
                 </div>
             </div>
-            <div class="login-popup-blur">
+        
+            <div class="login-modal">
+                <div class="login-popup">
+                    <div class="close-modal">
+                        <img src="/icons/close.svg" />
+                    </div>
+                    <h1>Where to login?</h1>
+                    <div class="login-popup-buttons">
+                        <a asp-action="Login" asp-controller="Account">
+                            <div class="login-button-popup">
+                                <img src="/icons/farmer.svg"/>
+                            </div>
+                        </a>
+                        <div class="login-button-gmail">
+                            <img src="/icons/gmail.svg"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="login-popup-blur">
 
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <a asp-action="Logout" asp-controller="Account" class="button register-button">Log-out</a>
+    }
+</div>
+
+<div class="mobile-nav">
+    <div class="menu">
+        <img src="/icons/menu.svg" />
+    </div>
+    <div class="mobile-nav-wrapper">
+        <div class="mobile-nav-body">
+            <div class="close-mobile">
+                <img src="/icons/close.svg" />
+            </div>
+            <div class="mobile-nav-center">
+                @if (User.Identity == null || !User.Claims.Any())
+                {
+                    <div class="mobile-buttons">
+                        <h3>Login</h3>
+                        <div class="mobile-login-buttons">
+                            <a asp-action="Login" asp-controller="Account">
+                                <div class="mobile-login-farm">
+                                    <img src="/icons/farmer.svg" />
+                                </div>
+                            </a>
+                            <div class="mobile-login-gmail">
+                                <img src="/icons/gmail.svg" />
+                            </div>
+                        </div>
+                        <div class="mobile-register-buttons">
+                            <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
+                            <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
+                        </div>
+                    </div>
+                }
+                <a asp-action="PointsOfProduction" asp-controller="Map" class="button register-button">Production Points</a>
             </div>
         </div>
     </div>
-}
-else
-{
-    <a asp-action="Logout" asp-controller="Account" class="button register-button">Log-out</a>
-}
+</div>
 
 
 @* <nav class="navbar navbar-expand-sm navbar-light bg-white"> *@
