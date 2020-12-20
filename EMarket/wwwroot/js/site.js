@@ -130,3 +130,11 @@ $(".products-card").mouseover(function () {
 $(".products-card").mouseleave(function () {
     $(this).css("transform", "scale(1)");
 });
+
+$(".settings").mouseover(function () {
+    $(this).css("transform", "rotate(360deg)");
+});
+
+$(".settings").mouseleave(function () {
+    $(this).css("transform", "rotate(-360deg");
+});
