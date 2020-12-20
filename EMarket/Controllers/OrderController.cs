@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EMarket.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,8 @@ namespace EMarket.Controllers
             if (cart == null || !cart.Items.Any())
                 return RedirectToAction("Index", "Home");
             await using AppContext db = new AppContext();
-            var allProducts = db.Products.Where(p => cart.Items.Keys.Contains(p.Id) && p.Count >= cart.Items[p.Id]);
+            var allProducts = (db.Products.AsEnumerable()
+                .Where(p => (cart.Items.Keys.Contains(p.Id) && p.Count >= cart.Items[p.Id]))).ToList();
             var orders = allProducts.GroupBy(key => key.SellerId).Select(p => new
             {
                 SellerId = p.Key,
@@ -56,10 +58,12 @@ namespace EMarket.Controllers
             {
                 Order newOrder = (await db.Orders.AddAsync(new Order()
                 {
-                    BuyerId = order.BuyerId,
+                    BuyerId = db.Buyers.AsEnumerable().FirstOrDefault(p => p.Email ==
+                                                               User.FindFirst(u => u.Type == ClaimTypes.Email).Value).Id,
                     DeliveryId = order.DeliveryId,
                     Destination = order.Destination,
-                    SellerId = item.SellerId
+                    SellerId = item.SellerId,
+                    TotalPrice = item.Products.Sum(p => p.Price * cart.Items[p.Id])
                 })).Entity;
 
                 foreach (var product in item.Products)
@@ -72,6 +76,7 @@ namespace EMarket.Controllers
                         ProductId = product.Id,
                         OrderId = newOrder.Id
                     });
+                    await db.SaveChangesAsync();
                     await db.ProductOrders.AddAsync(new ProductOrder()
                     {
                         Count = cart.Items[product.Id],
@@ -84,7 +89,7 @@ namespace EMarket.Controllers
                 await db.SaveChangesAsync();
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
