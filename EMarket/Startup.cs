@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using EMarket.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace EMarket
@@ -29,7 +30,7 @@ namespace EMarket
                     options.ClientId = "713332156036-thg78s3ild2s5jjfp3i7ngj5de75af7v.apps.googleusercontent.com";
                     options.ClientSecret = "JEFG0DgH4JKqBk4waXyTioJe";
                 });
-
+            services.AddTransient<ISearchService, SearchService>();
             services.AddControllersWithViews();
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
