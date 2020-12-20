@@ -74,6 +74,8 @@ namespace EMarket.Controllers
                     p.Email == email);
                 user.FirstName = seller.FirstName;
                 user.LastName = seller.LastName;
+                user.City = seller.City;
+                user.CompanyName = seller.CompanyName;
                 await db.SaveChangesAsync();
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 var claims = new List<Claim>
@@ -82,6 +84,7 @@ namespace EMarket.Controllers
                     new Claim(ClaimTypes.Email, email),
                     new Claim(ClaimTypes.GivenName, seller.FirstName),
                     new Claim(ClaimTypes.Surname, seller.LastName),
+                    new Claim(ClaimTypes.Locality, seller.City),
                     new Claim(ClaimTypes.Role, "Seller")
                 };
                 ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,

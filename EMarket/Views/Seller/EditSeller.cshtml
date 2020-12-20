@@ -24,6 +24,14 @@
                 @Html.LabelFor(seller=>seller.LastName, "LastName: ")
                 @Html.TextBoxFor(seller => seller.LastName)
             </p>
+            <p>
+                @Html.LabelFor(seller=>seller.City, "City: ")
+                @Html.TextBoxFor(seller => seller.City)
+            </p>
+            <p>
+                @Html.LabelFor(seller=>seller.CompanyName, "Company name: ")
+                @Html.TextBoxFor(seller => seller.CompanyName)
+            </p>
             <button type="submit">Save</button>
         }
     </div>
