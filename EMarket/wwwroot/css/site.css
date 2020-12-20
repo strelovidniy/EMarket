@@ -779,23 +779,20 @@ header{
 }
 
 /* Products cart */
-.products-cart {
-    margin-top: 7rem;
-    width: 350px;
-    height: 350px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-}
-
 .products-container {
     height: calc(100% - 7rem);
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.products-wrapper {
+    margin-top: 7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
