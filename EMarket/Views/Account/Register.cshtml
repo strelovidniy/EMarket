@@ -18,6 +18,7 @@
         <img src="/images/registration/basket.svg" />
     </div>
 
+
     <div class="register-wrapper">
         @using (Html.BeginForm("RegisterAsBuyer", "Account", FormMethod.Post))
         {
@@ -28,19 +29,23 @@
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.Password, "Enter password")<br />
-                @Html.TextBoxFor(m => m.Password)<br />
+                @Html.TextBoxFor(m => m.Password, new {type="password"})<br />
+                <span asp-validation-for="Password"></span>
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.ConfirmPassword, "Confirm password")<br />
-                @Html.TextBoxFor(m => m.ConfirmPassword)<br />
+                @Html.TextBoxFor(m => m.ConfirmPassword, new {type="password"})<br />
+                <span asp-validation-for="ConfirmPassword"></span>
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.FirstName, "First Name")<br />
                 @Html.TextBoxFor(m => m.FirstName)<br />
+                <span asp-validation-for="FirstName"></span>
             </div>
             <div class="register-item">
                 @Html.LabelFor(m => m.LastName, "Last Name")<br />
                 @Html.TextBoxFor(m => m.LastName)<br />
+                <span asp-validation-for="LastName"></span>
             </div>
             <div class="reg-button">
                 <input class="proceed-register" type="submit" value="Register" />
@@ -53,4 +58,4 @@
             </div>
         }
     </div>
-</div>
+    </div>
