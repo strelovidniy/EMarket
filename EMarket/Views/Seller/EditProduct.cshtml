@@ -11,28 +11,28 @@
     <title>Product adding</title>
 </head>
 <body>
-<div>
+    <div>
         @using (Html.BeginForm("EditProduct", "Seller", FormMethod.Post))
         {
             <p>
-                @Html.LabelFor(pr=>pr.Name, "Name of product: ")
+                @Html.LabelFor(pr => pr.Name, "Name of product: ")
                 @Html.TextBoxFor(pr => pr.Name)
             </p>
             <p>
-                @Html.LabelFor(pr=>pr.Description, "Description of the product: ")
-                @Html.TextBoxFor(pr=>pr.Description)
+                @Html.LabelFor(pr => pr.Description, "Description of the product: ")
+                @Html.TextBoxFor(pr => pr.Description)
             </p>
             <p>
-                @Html.LabelFor(pr=>pr.Quantity, "Quantity: ")
-                @Html.TextBoxFor(pr=>pr.Quantity)
+                @Html.LabelFor(pr => pr.Quantity, "Quantity: ")
+                @Html.TextBoxFor(pr => pr.Quantity)
             </p>
             <p>
-                @Html.LabelFor(pr=>pr.Count, "Count: " ,new {type = "numeric"})
-                @Html.TextBoxFor(pr=>pr.Count)
+                @Html.LabelFor(pr => pr.Count, "Count: ", new { type = "number" })
+                @Html.TextBoxFor(pr => pr.Count)
             </p>
             <p>
-                @Html.LabelFor(pr=>pr.Price, "Price: ")
-                @Html.TextBoxFor(pr=>pr.Price)
+                @Html.LabelFor(pr => pr.Price, "Price: ")
+                @Html.TextBoxFor(pr => pr.Price)
             </p>
             <button type="submit">Save</button>
         }
