@@ -212,11 +212,11 @@ body {
     transition: opacity .3s ease-in-out, top 1s ease-in-out, transform 1s ease-in-out;
 }
 
-.login-popup.active {
-    opacity: 1;
-    top: 50%;
-    transform: translateY(-50%);
-}
+    .login-popup.active {
+        opacity: 1;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
 .login-button-popup {
     background-color: var(--main-color);
@@ -280,7 +280,7 @@ body {
     height: 20px;
 }
 
-header {
+header{
     margin-top: 2rem;
 
     display: flex;
@@ -411,6 +411,105 @@ header {
     text-align: center;
     font-size: 3.3rem;
     font-weight: 800;
+}
+
+.products-nav {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.products-card {
+    padding: 2rem;
+    height: 150px;
+    width: 150px;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    color: rgba(0,0,0,.8);
+    font-weight: 700;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform .3s ease-in-out;
+}
+
+.products-card:hover {
+    transform: scale(1.05);
+}
+
+.meat {
+    padding-bottom: .4rem!important;
+}
+
+
+.milk img {
+    width: 40px!important;
+    object-fit: contain;
+}
+
+.products-image img {
+    margin: 1rem;
+    width: 60px;
+    object-fit: contain;
+}
+
+.product-button {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--secondary-aqua);
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s all ease;
+}
+
+.list-of-products {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.list-element-product {
+    width: 450px;
+    height: 450px;
+    -webkit-box-shadow: 3px 10px 15px 5px rgba(0,0,0,0.11);
+    box-shadow: 3px 10px 15px 5px rgba(0,0,0,0.11);
+    padding: 2rem;
+    border-radius: 30px;
+    background-color: rgba(0,0,0,.02);
+}
+
+.product-info {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.product-title {
+    font-weight: 700;
+}
+
+
+.product-price {
+    font-size: 1.2rem;
+    align-self: flex-end;
+    font-weight: 700;
+    color: var(--main-color);
 }
 
 /* Register page */
@@ -607,12 +706,18 @@ header {
 }
 
 
-
+/* Login page */
 
 
 
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
 @media (orientation: portrait) {
+
+    .progressbar,
+    .scrollpath {
+        display: none;
+    }
+
     body {
         margin: 0;
     }
@@ -786,5 +891,15 @@ header {
         margin: 0;
     }
 
+    .products-nav {
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 550px;
+    }
+
+    .animals {
+        margin-left: 5rem;
+    }
 
     }

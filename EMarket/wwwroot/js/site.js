@@ -1,7 +1,8 @@
 ﻿$(document).ready(function () {
     AOS.init();
-    if (location.pathname == "/Account/RegisterAsBuyer" || location.pathname == "/Account/RegisterAsSeller") {
-        $(".container").hide();
+    if (location.pathname == "/Account/RegisterAsBuyer" || location.pathname == "/Account/RegisterAsSeller" || location.pathname == "/Account/Login") {
+        $(".desktop-nav").hide();
+        $(".mobile-nav").hide();
     }
 
     $(".login-button").click(function () {
@@ -112,4 +113,12 @@ $(".reg-button").mouseleave(function () {
 
 $(".reg-button").hover(function () {
     $(this).css("cursor", "pointer");
+});
+
+$(".product-button").mouseover(function() {
+    $(".product-button").css("transform", "scale(1.1)");
+});
+
+$(".product-button").mouseleave(function () {
+    $(".product-button").css("transform", "scale(1)");
 });

@@ -44,32 +44,69 @@
             <h1 data-aos="fade-down" data-aos-delay="1000">Support locals</h1>
             <img data-aos="zoom-in-up" data-aos-delay="1500" src="/images/home/farmers.jpg" />
         </div>
-    </div>
-    
-    <div class="products">
+        
+        <div class="products">
+            <div class="products-nav">
 
+                <div class="products-card" data-aos="fade-up">
+                    <div class="products-image milk">
+                        <img src="/icons/products/milk.svg"/>
+                    </div>
+                    <div class="products-title">
+                        Milk
+                    </div>
+                </div>
+
+                <div class="products-card animals" data-aos="fade-up">
+                    <div class="products-image ">
+                        <img src="/icons/products/animals.svg"/>
+                    </div>
+                    <div class="products-title">
+                        Animals
+                    </div>
+                </div>
+
+                <div class="products-card meat" data-aos="fade-up">
+                    <div class="products-image ">
+                        <img src="/icons/products/meat.svg"/>
+                    </div>
+                    <div class="products-title">
+                        Meat
+                    </div>
+                </div>
+
+                <div class="products-card" data-aos="fade-up">
+                    <div class="products-image">
+                        <img src="/icons/products/fruits.svg"/>
+                    </div>
+                    <div class="products-title">
+                        Fruits
+                    </div>
+                </div>
+
+                <div class="products-card" data-aos="fade-up">
+                    <div class="products-image">
+                        <img src="/icons/products/vegerables.svg"/>
+                    </div>
+                    <div class="products-title">
+                        Vegetables
+                    </div>
+                </div>
+            </div>
+            <div class="list-of-products" data-aos="fade-up">
+                
+                <div class="list-element-product" data-aos="fade-up">
+                    <div class="product-info">
+                        <h1 class="product-title">Product title</h1>
+                        <p class="product-description">Product description</p>
+                        <p class="product-price">Product price $</p>
+                    </div>
+                    <div class="product-button">
+                        <a>View</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </section>
-
-
-@* <main> *@
-@* *@
-@*     @foreach (var product in Model) *@
-@*     { *@
-@*         <div class="poster"> *@
-@*             <div class="poster-info"> *@
-@*                 <h1 class="poster-title">@product.Name</h1> *@
-@*                 <p class="poster-description">@product.Description</p> *@
-@*                 <p class="poster-eventdate">@product.Price</p> *@
-@* *@
-@*             </div> *@
-@*             <div class="poster-buttons"> *@
-@*                 <form action="@Url.Action("Index", "Product", new {product.Id})" method="post"> *@
-@*                     <input type="hidden" name="Id" value="@product.Id"> *@
-@*                     <button class="view-poster" type="submit">View</button> *@
-@*                 </form> *@
-@*             </div> *@
-@* *@
-@*         </div> *@
-@*     } *@
-@* </main> *@
