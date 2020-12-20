@@ -14,7 +14,7 @@
     --secondary-blue: #067cba;
 }
 
-@media screen and (min-width: 1080px) and (max-width: 1920px) {
+@media screen and (min-width: 1080px){
     .desktop-nav {
         display: block;
     }
