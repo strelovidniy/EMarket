@@ -32,12 +32,8 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AddProduct()
+        public IActionResult AddProduct()
         {
-            await using AppContext db = new AppContext();
-            var categories = db.Categories.ToList();
-            ViewBag.Categories = categories;
-            
             return View(new Product());
         }
 
@@ -65,6 +61,7 @@ namespace EMarket.Controllers
                 LastName = User.FindFirst(u=>u.Type==ClaimTypes.Surname)?.Value
             });
         }
+
         [HttpPost]
         public async Task<IActionResult> EditSeller(Seller seller)
         {
