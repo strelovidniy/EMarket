@@ -2,6 +2,9 @@
 
 * {
     font-family: "Poppins";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Variables binding */
@@ -17,6 +20,7 @@
     }
     .mobile-nav {
         display: none;
+        height: initial;
     }
 
 }
@@ -440,17 +444,8 @@ body {
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
     body {
-        min-width: 360px;
-        width: 100vw;
-        max-width: 736px;
-
-        height: auto;
+        margin: 0;
     }
-
-    body, html {
-        overflow-x: hidden;
-    }
-
     
     .desktop-nav {
         display: none;
@@ -551,13 +546,19 @@ body {
         /* transform: translateY(-25%); */
     }
 
+    .fullscreen-wrapper {
+        height: 100vh;
+    }
 
-    /* User register */
+    /* register */
     .seller,
     .carrot,
     .basket-back,
     .basket,
-    .catcher{
+    .catcher,
+    .volonteer,
+    .chicken_graphics,
+    .seller_registration_farmers {
         display: none;
     }
 
