@@ -15,7 +15,6 @@ namespace IOSApp
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
             Window.RootViewController = new ViewController();
 
