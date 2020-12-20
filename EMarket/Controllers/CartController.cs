@@ -35,7 +35,7 @@ namespace EMarket.Controllers
                 cart.TotalPrice = 0;
 
             HttpContext.Session.Set(cart);
-            return RedirectToAction("View", "Product", new { id });
+            return RedirectToAction("Index", "Cart", new { id });
         }
 
         public async Task<IActionResult> Index()
