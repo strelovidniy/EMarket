@@ -207,7 +207,7 @@ body {
 .login-popup {
     opacity: 0;
     top: -200%;
-    transform: translate(-70%, 50%);
+    transform: translate(-50%, 50%);
     background-color: white;
     -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
     box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
@@ -226,7 +226,7 @@ body {
     .login-popup.active {
         opacity: 1;
         top: 50%;
-        transform: translate(-70%, 50%);
+        transform: translate(-50%, 50%);
     }
 
 .login-button-popup {
