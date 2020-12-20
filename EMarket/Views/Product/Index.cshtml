@@ -6,13 +6,13 @@
 }
 
 <div class="products-wrapper">
-    <h2>Products</h2>
+    <h2 data-aos="zoom-in-down">Products</h2>
 
     <div class="products-container">
-        @foreach (var product in Model)
-        {
+        
             <div class="list-of-products" data-aos="fade-up">
-
+                @foreach (var product in Model)
+                {
                 <div class="list-element-product" data-aos="fade-up">
                     <div class="product-info">
                         <h1 class="product-title">@product.Name</h1>
@@ -23,10 +23,7 @@
                         <a asp-action="View" asp-controller="Product" asp-route-id="@product.Id">View</a>
                     </div>
                 </div>
-
+                }
             </div>
-            <div>
-            </div>
-        }
     </div>
 </div>

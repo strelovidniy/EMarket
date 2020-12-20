@@ -1,7 +1,7 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
-    font-family: "Poppins";
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -512,6 +512,7 @@ header{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .list-element-product {
@@ -520,6 +521,7 @@ header{
     -webkit-box-shadow: 3px 10px 15px 5px rgba(0,0,0,0.11);
     box-shadow: 3px 10px 15px 5px rgba(0,0,0,0.11);
     padding: 2rem;
+    margin: 2rem;
     border-radius: 30px;
     background-color: rgba(0,0,0,.02);
 }
@@ -778,6 +780,56 @@ header{
     flex-direction: column;
 }
 
+.detail-view-wrapper {
+    padding: 2rem 0;
+    width: 450px;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 30px;
+    -webkit-box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+    box-shadow: 3px 3px 15px 5px rgba(0,0,0,0.31);
+}
+
+.detail-view-wrapper form {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-products-container {
+    height: calc(100vh - 7rem);
+    width: 1240px;
+    max-width: 1240px;
+    min-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horse {
+    position: absolute;
+    width: 400px;
+    object-fit: contain;
+    right: 0;
+    bottom: 0;
+    z-index: -10;
+}
+
+.farmer_hay {
+    position: absolute;
+    width: 400px;
+    object-fit: contain;
+    left: 0;
+    bottom: 0;
+    z-index: -10;
+}
+
 /* Products cart */
 .products-container {
     height: calc(100% - 7rem);
@@ -990,7 +1042,7 @@ header{
     .mobile-nav-center {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         height: 100%;
     }
@@ -1001,16 +1053,25 @@ header{
     }
 
     .mobile-body {
-        flex: 0.9;
+        flex: 0.6;
         width: 80%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        flex-direction: column;
     }
 
     .fullscreen-wrapper {
         height: 100vh;
     }
+
+        .products-container {
+            max-width: 360px;
+            width: 360px;
+            min-width: 360px; 
+        }
+
+
 
     /* register */
     .seller,
@@ -1044,10 +1105,13 @@ header{
         flex-direction: column;
     }
 
+        .editors {
+            display: none;
+        }
 
-    .cart-wrapper {
-        width: 225px;
-    }
+        .cart-wrapper {
+            width: 225px;
+        }
 
     .cart-image {
         margin: 0;

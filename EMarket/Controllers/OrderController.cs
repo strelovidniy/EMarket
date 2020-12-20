@@ -13,6 +13,7 @@ namespace EMarket.Controllers
 {
     public class OrderController : Controller
     {
+        [Route("/order/new")]
         [HttpGet]
         public async Task<IActionResult> Create()
         {

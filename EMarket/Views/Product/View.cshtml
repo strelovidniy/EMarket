@@ -6,12 +6,19 @@
 }
 
 
-<h1>@Model.Name</h1>
-<p><strong>@Model.Category</strong></p>
-<p>@Model.Description</p>
-<p>Price <strong>@Model.Price</strong></p>
-<form action="@Url.Action("AddItem", "Cart")" method="get">
-    <input type="hidden" name="Id" value="@Model.Id" />
-    <input type="number" name="count" min="1" max="@Model.Count" />
-    <button class="btn btn-outline-success" type="submit">Add to the cart</button>
-</form>
+<div class="detail-products-container">
+    <img class="horse" src="/images/horse.svg" />
+    <img class="farmer_hay" src="/images/farmer_hay.svg" />
+
+    <div class="detail-view-wrapper">
+        <h1>@Model.Name</h1>
+        <p><strong>@Model.Category</strong></p>
+        <p>@Model.Description</p>
+        <p>Price <strong>@Model.Price</strong></p>
+        <form action="@Url.Action("AddItem", "Cart")" method="get">
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="number" name="count" min="1" max="@Model.Count" />
+            <button class="btn btn-outline-success" type="submit">Add to the cart</button>
+        </form>
+    </div>
+</div>

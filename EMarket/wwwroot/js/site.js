@@ -116,11 +116,11 @@ $(".reg-button").hover(function () {
 });
 
 $(".product-button").mouseover(function() {
-    $(".product-button").css("transform", "scale(1.1)");
+    $(this).css("transform", "scale(1.1)");
 });
 
 $(".product-button").mouseleave(function () {
-    $(".product-button").css("transform", "scale(1)");
+    $(this).css("transform", "scale(1)");
 });
 
 $(".products-card").mouseover(function () {
