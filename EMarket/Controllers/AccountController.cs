@@ -47,8 +47,9 @@ namespace EMarket.Controllers
                         Email = claims[ClaimTypes.Email],
                         FirstName = claims[ClaimTypes.GivenName],
                         LastName = claims[ClaimTypes.Surname],
-                        Password = claims[ClaimTypes.Email]
+                        Password = "jdkldnfoMNMe"
                     });
+                    await db.SaveChangesAsync();
                 }
             }
 
