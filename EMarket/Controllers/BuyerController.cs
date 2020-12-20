@@ -11,16 +11,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EMarket.Controllers
 {
-    [Authorize]
+    
     public class BuyerController : Controller
     {
         public async Task<IActionResult> Index()
         {
             await using AppContext db = new AppContext();
-            var orders = db.Orders.Include(s=>s.Seller)
-                .Where(o => o.Seller.Email == User.FindFirst(u 
+            var orders = db.Orders.Include(s=>s.Buyer)
+                .Where(o => o.Buyer.Email == User.FindFirst(u 
                     => u.Type == ClaimTypes.Email).Value)
-                .Include(o => o.Buyer)
+                .Include(o => o.Seller)
                 .Include(o => o.Delivery)
                 .Include(o => o.ProductOrder)
                 .ThenInclude(po => po.Product).ToList();
