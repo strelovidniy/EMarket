@@ -21,13 +21,16 @@ namespace EMarket.Controllers
         public async Task<IActionResult> Index()
         {
             await using AppContext db = new AppContext();
-            var orders = db.Orders.Include(s=>s.Seller)
-                .Where(o => o.Seller.Email == User.FindFirst(u 
-                    => u.Type == ClaimTypes.Email).Value)
+            string email = User.FindFirst(u
+                => u.Type == ClaimTypes.Email)!.Value;
+            var orders = db.Orders.Include(s => s.Seller)
+                ?.Where(o => o.Seller.Email == email)
                 .Include(o => o.Buyer)
                 .Include(o => o.Delivery)
                 .Include(o => o.ProductOrder)
                 .ThenInclude(po => po.Product).ToList();
+            if (orders == null)
+                return View(new List<Order>());
             return View(orders);
         }
 
@@ -56,9 +59,9 @@ namespace EMarket.Controllers
         {
             return View(new Seller()
             {
-                Email = User.FindFirst(u=>u.Type==ClaimTypes.Email)?.Value,
-                FirstName = User.FindFirst(u=>u.Type==ClaimTypes.GivenName)?.Value,
-                LastName = User.FindFirst(u=>u.Type==ClaimTypes.Surname)?.Value
+                Email = User.FindFirst(u => u.Type == ClaimTypes.Email)?.Value,
+                FirstName = User.FindFirst(u => u.Type == ClaimTypes.GivenName)?.Value,
+                LastName = User.FindFirst(u => u.Type == ClaimTypes.Surname)?.Value
             });
         }
 
@@ -74,7 +77,6 @@ namespace EMarket.Controllers
                 user.FirstName = seller.FirstName;
                 user.LastName = seller.LastName;
                 user.City = seller.City;
-                user.CompanyName = seller.CompanyName;
                 await db.SaveChangesAsync();
                 await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 var claims = new List<Claim>
@@ -95,19 +97,25 @@ namespace EMarket.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditProduct(int id)
+        public async Task<IActionResult> EditProduct(int id)
         {
-            Product product =  searchService.GetProductById(id);
+            await using AppContext db = new AppContext();
+            Product? product = db.Products.Include(p => p.Seller).AsEnumerable()
+                .FirstOrDefault(p => p.Id == id && p.Seller.Email
+                    == User.FindFirst(u => u.Type == ClaimTypes.Email).Value);
+            if (product == null)
+                return View("Error", new ErrorViewModel() { RequestId = "404 Not Found." });
             return View(product);
         }
-        
+
         [HttpPost]
-        public IActionResult EditProduct(Product product)
-        {   using AppContext db = new AppContext();
+        public async Task<IActionResult> EditProduct(Product product)
+        {
+            await using AppContext db = new AppContext();
             string email = User?.FindFirst(u => u.Type == ClaimTypes.Email)?.Value;
-            var user =  db.Sellers.FirstOrDefault(p =>
-                p.Email == email);
-            user.Products[user.Products.FindIndex(prod => prod.Id == product.Id)] = product;
+            var user = db.Sellers.FirstOrDefault(p =>
+                 p.Email == email);
+
             return View(product);
         }
 

@@ -70,7 +70,8 @@ namespace EMarket.Controllers
                 await using AppContext db = new AppContext();
                 if (role == Role.Buyer)
                 {
-                    Buyer user = await db.Buyers.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    Buyer user = await db.Buyers.FirstOrDefaultAsync(u => u.Email == model.Email 
+                                                                          && u.Password == model.Password);
                     if (user != null)
                     {
                         await AuthenticateBuyer(user);
