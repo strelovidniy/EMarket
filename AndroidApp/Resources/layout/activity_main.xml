@@ -12,5 +12,6 @@
         android:id="@+id/webView1"
         android:requiresFadingEdge="vertical"
         android:keepScreenOn="true"
-        android:scrollbars="none" />
+        android:scrollbars="none"/>
+  
 </RelativeLayout>
