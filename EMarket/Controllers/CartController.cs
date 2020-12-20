@@ -30,7 +30,7 @@ namespace EMarket.Controllers
                 cart.Items[id] = count;
 
             if (product != null)
-                cart.TotalPrice += product.Price;
+                cart.TotalPrice += product.Price * count;
 
             HttpContext.Session.Set(cart);
             return RedirectToAction("Index", "Product", new { id });
@@ -57,5 +57,36 @@ namespace EMarket.Controllers
             return View("Empty");
         }
 
+        public IActionResult Delete(int id)
+        {
+            if (HttpContext.Session.TryGetCart(out Cart cart))
+            {
+                cart.Items.Remove(id);
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Reduce(int id)
+        {
+            if (HttpContext.Session.TryGetCart(out Cart cart))
+            {
+                if(cart.Items[id] > 0)
+                    cart.Items[id]--;
+                else
+                {
+                    cart.Items.Remove(id);
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Add(int id)
+        {
+            if (HttpContext.Session.TryGetCart(out Cart cart))
+            {
+                cart.Items[id]++;
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
