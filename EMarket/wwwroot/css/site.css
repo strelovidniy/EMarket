@@ -2,6 +2,9 @@
 
 * {
     font-family: "Poppins";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Variables binding */
@@ -17,6 +20,7 @@
     }
     .mobile-nav {
         display: none;
+        height: initial;
     }
 
 }
@@ -175,7 +179,6 @@ body {
     opacity: 1;
     top: 50%;
     transform: translateY(-50%);
-    transition: transform 300ms cubic-bezier(0.18, 0.89, 0.43, 1.19);
 }
 
 .login-button-popup {
@@ -441,17 +444,8 @@ body {
 /* -------------------------------------------------- MOBILE -------------------------------------------------- */
 @media only screen and (min-device-width: 360px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
     body {
-        min-width: 360px;
-        width: 100vw;
-        max-width: 736px;
-
-        height: auto;
+        margin: 0;
     }
-
-    body, html {
-        overflow-x: hidden;
-    }
-
     
     .desktop-nav {
         display: none;
@@ -459,6 +453,7 @@ body {
 
     .mobile-nav {
         display: block;
+        z-index: 1000;
     }
 
     .menu {
@@ -550,4 +545,32 @@ body {
         height: 100%;
         /* transform: translateY(-25%); */
     }
+
+    .fullscreen-wrapper {
+        height: 100vh;
+    }
+
+    /* register */
+    .seller,
+    .carrot,
+    .basket-back,
+    .basket,
+    .catcher,
+    .volonteer,
+    .chicken_graphics,
+    .seller_registration_farmers {
+        display: none;
+    }
+
+    .register-wrapper{
+        width: 350px;
+        z-index: -1;
+    }
+
+    .register-wrapper form {
+        width: 300px;
+    }
+
+
+
 }
