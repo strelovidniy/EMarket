@@ -11,143 +11,143 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="progressbar"></div>
-    <div class="scrollpath"></div>
 
-    <div class="desktop-nav">
-        @if (User.Identity == null || !User.Claims.Any())
-        {
-            <div class="container">
-                <div class="authentication-buttons-wrapper">
-                    <div class="header-left">
-                        <a asp-action="PointsOfProduction" asp-controller="Map" class="production-button">Production Points</a>
+<div class="desktop-nav">
+    @if (User.Identity == null || !User.Claims.Any())
+    {
+        <div class="container">
+            <div class="authentication-buttons-wrapper">
+                <div class="header-left">
+                    <a asp-action="PointsOfProduction" asp-controller="Map" class="button production-button">Production Points</a>
 
+                </div>
+                <div class="authentication-buttons">
+                    <a class="button login-button">
+                        login
+                        <div class="wheat-login-left">
+                            <img src="icons/wheat.svg" />
+                        </div>
+                        <div class="wheat-login-right">
+                            <img src="icons/wheat.svg" />
+                        </div>
+                    </a>
+                
+                    <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
+                    <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
+                </div>
+            </div>
+        
+            <div class="login-modal">
+                <div class="login-popup">
+                    <div class="close-modal">
+                        <img src="/icons/close.svg" />
                     </div>
-                    <div class="authentication-buttons">
-                        <a class="button login-button">
-                            login
-                            <div class="wheat-login-left">
-                                <img src="icons/wheat.svg" />
-                            </div>
-                            <div class="wheat-login-right">
-                                <img src="icons/wheat.svg" />
+                    <h1>Where to login?</h1>
+                    <div class="login-popup-buttons">
+                        <a asp-action="Login" asp-controller="Account">
+                            <div class="login-button-popup">
+                                <img src="/icons/farmer.svg" />
                             </div>
                         </a>
-
-                        <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
-                        <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
+                        <a href="Account/google-signin">
+                        <div class="login-button-gmail">
+                            <img src="/icons/gmail.svg" />
+                        </div>
+                        </a>
                     </div>
                 </div>
+                <div class="login-popup-blur">
 
-                <div class="login-modal">
-                    <div class="login-popup">
-                        <div class="close-modal">
-                            <img src="/icons/close.svg" />
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <header>
+            <div class="container">
+                <div class="user">
+                    <div class="user-information">
+                        <div class="name-surname">
+                            <h3>@User.FindFirst(u => u.Type == ClaimTypes.GivenName).Value</h3>
+                            <h3>@User.FindFirst(u => u.Type == ClaimTypes.Surname).Value</h3>
                         </div>
-                        <h1>Where to login?</h1>
-                        <div class="login-popup-buttons">
+                    </div>
+                    <a asp-action="Logout" asp-controller="Account" class="button logout-button">Log out</a>
+                </div>
+            </div>
+        </header>
+    }
+        
+</div>
+<div class="mobile-nav">
+    <div class="menu">
+        <img src="/icons/menu.svg" />
+    </div>
+    <div class="mobile-nav-wrapper">
+        <div class="mobile-nav-body">
+            <div class="close-mobile">
+                <img src="/icons/close.svg" />
+            </div>
+            <div class="mobile-nav-center">
+                @if (User.Identity == null || !User.Claims.Any())
+                {
+                    <div class="mobile-buttons">
+                        <h3>Login</h3>
+                        <div class="mobile-login-buttons">
                             <a asp-action="Login" asp-controller="Account">
-                                <div class="login-button-popup">
+                                <div class="mobile-login-farm">
                                     <img src="/icons/farmer.svg" />
                                 </div>
                             </a>
-                            <div class="login-button-gmail">
+                            <div class="mobile-login-gmail">
                                 <img src="/icons/gmail.svg" />
                             </div>
                         </div>
-                    </div>
-                    <div class="login-popup-blur">
-
-                    </div>
-                </div>
-            </div>
-
-        }
-        else
-        {
-            <header>
-                <div class="container">
-                    <div class="user">
-                        <div class="user-information">
-                            <div class="name-surname">
-                                <h3>@User.FindFirst(u => u.Type == ClaimTypes.GivenName).Value</h3>
-                                <h3>@User.FindFirst(u => u.Type == ClaimTypes.Surname).Value</h3>
-                            </div>
+                        <div class="mobile-register-buttons">
+                            <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
+                            <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
                         </div>
-                        <a asp-action="Logout" asp-controller="Account" class="button logout-button">Log out</a>
                     </div>
-                </div>
-            </header>
-        }
-
-    </div>
-    <div class="mobile-nav">
-        <div class="menu">
-            <img src="/icons/menu.svg" />
-        </div>
-        <div class="mobile-nav-wrapper">
-            <div class="mobile-nav-body">
-                <div class="close-mobile">
-                    <img src="/icons/close.svg" />
-                </div>
-                <div class="mobile-nav-center">
-                    @if (User.Identity == null || !User.Claims.Any())
-                    {
-                        <div class="mobile-buttons">
-                            <h3>Login</h3>
-                            <div class="mobile-login-buttons">
-                                <a asp-action="Login" asp-controller="Account">
-                                    <div class="mobile-login-farm">
-                                        <img src="/icons/farmer.svg" />
-                                    </div>
-                                </a>
-                                <div class="mobile-login-gmail">
-                                    <img src="/icons/gmail.svg" />
-                                </div>
-                            </div>
-                            <div class="mobile-register-buttons">
-                                <a asp-action="RegisterAsBuyer" asp-controller="Account" class="button register-button">register</a>
-                                <a asp-action="RegisterAsSeller" asp-controller="Account" class="button register-button">register as a seller</a>
-                            </div>
-                        </div>
-                    }
-                    <a asp-action="PointsOfProduction" asp-controller="Map" class="button register-button">Production Points</a>
-                </div>
+                }
+                <a asp-action="PointsOfProduction" asp-controller="Map" class="button register-button">Production Points</a>
             </div>
         </div>
     </div>
+</div>
 
 
-    @* <nav class="navbar navbar-expand-sm navbar-light bg-white"> *@
-    @*     <form class="form-inline my-2 my-lg-0" action="@Url.Action("Index", "Home")" method="get"> *@
-    @*         <input class="form-control my-sm-2" type="search" name="query" placeholder="Product name"> *@
-    @*         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> *@
-    @*     </form> *@
-    @*     <span class="navbar-text ml-auto"> *@
-    @*         @{ *@
-    @*             Cart cart; *@
-    @*             if (!Context.Session.TryGetCart(out cart)) *@
-    @*             { *@
-    @*                 cart = new Cart(); *@
-    @*             } *@
-    @*             if (Context.Session.TryGetCart(out cart) && cart.Items.Count > 0) *@
-    @*             { *@
-    @*                 <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a> *@
-    @*             } *@
-    @*             else *@
-    @*             { *@
-    @*                 @:Cart is empty *@
-    @*             } *@
-    @*         } *@
-    @*     </span> *@
-    @* </nav> *@
+@* <nav class="navbar navbar-expand-sm navbar-light bg-white"> *@
+@*     <form class="form-inline my-2 my-lg-0" action="@Url.Action("Index", "Home")" method="get"> *@
+@*         <input class="form-control my-sm-2" type="search" name="query" placeholder="Product name"> *@
+@*         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> *@
+@*     </form> *@
+@*     <span class="navbar-text ml-auto"> *@
+@*         @{ *@
+@*             Cart cart; *@
+@*             if (!Context.Session.TryGetCart(out cart)) *@
+@*             { *@
+@*                 cart = new Cart(); *@
+@*             } *@
+@*             if (Context.Session.TryGetCart(out cart) && cart.Items.Count > 0) *@
+@*             { *@
+@*                 <a href="@Url.Action("Index", "Cart")">Products @cart.Items.Count for price @cart.TotalPrice</a> *@
+@*             } *@
+@*             else *@
+@*             { *@
+@*                 @:Cart is empty *@
+@*             } *@
+@*         } *@
+@*     </span> *@
+@* </nav> *@
 
-    @RenderBody()
+@RenderBody()
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>

@@ -59,6 +59,7 @@ namespace EMarket.Controllers
                 LastName = User.FindFirst(u=>u.Type==ClaimTypes.Surname)?.Value
             });
         }
+
         [HttpPost]
         public async Task<IActionResult> EditSeller(Seller seller)
         {
