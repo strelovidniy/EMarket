@@ -584,6 +584,7 @@ header {
 
     .container {
         justify-content: center;
+        align-items: center;
     }
 
     .content {
@@ -617,6 +618,7 @@ header {
         justify-content: center;
         align-items: center;
         opacity: 0;
+        z-index: 1000;
         transition: .3s ease-in-out all;
         backdrop-filter: blur(2px);
     }
@@ -709,7 +711,20 @@ header {
         z-index: -1;
     }
 
-        .register-wrapper form {
-            width: 300px;
-        }
-}
+    .register-wrapper form {
+        width: 300px;
+    }
+
+    /* Home */
+    .farmers img {
+        margin-top: 3rem;
+        width: 500px;
+    }
+
+    .searchbar {
+        margin-left: 3rem;
+        width: 450px;
+    }
+
+
+    }
