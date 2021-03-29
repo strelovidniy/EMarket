@@ -451,6 +451,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-bottom: 100px;
 }
 
 .products-card {
@@ -1117,7 +1118,7 @@ header{
         .products-container {
             max-width: 360px;
             width: 360px;
-            min-width: 360px; 
+            min-width: 360px;
         }
 
 
@@ -1165,6 +1166,7 @@ header{
         flex-wrap: wrap;
         flex-direction: column;
         height: 550px;
+        margin-bottom: 100px;
     }
 
     .list-element-product {
