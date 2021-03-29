@@ -26,7 +26,7 @@ namespace EMarket.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var builder = new SqlConnectionStringBuilder();
-            builder.DataSource = @"emarketdbdbserver.database.windows.net";
+            builder.DataSource = @"emarketdbserver.database.windows.net";
             builder.UserID = "HackatonTeam";
             builder.Password = "EMarketHackaton!";
             builder.InitialCatalog = "EMarketDB";
