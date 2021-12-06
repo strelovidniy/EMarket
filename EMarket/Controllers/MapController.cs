@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using EMarket.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EMarket.Controllers
 {

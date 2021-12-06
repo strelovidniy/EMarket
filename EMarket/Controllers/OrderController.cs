@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -7,7 +6,6 @@ using EMarket.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
-using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
@@ -56,7 +54,7 @@ namespace EMarket.Controllers
             });
             foreach (var item in orders)
             {
-                Order newOrder = (await db.Orders.AddAsync(new Order()
+                Order newOrder = (await db.Orders.AddAsync(new Order
                 {
                     BuyerId = db.Buyers.AsEnumerable().FirstOrDefault(p => p.Email ==
                                                                User.FindFirst(u => u.Type == ClaimTypes.Email).Value).Id,
@@ -69,7 +67,7 @@ namespace EMarket.Controllers
                 foreach (var product in item.Products)
                 {
                     product.Count -= cart.Items[product.Id];
-                    order.ProductOrder.Add(new ProductOrder()
+                    order.ProductOrder.Add(new ProductOrder
                     {
                         Count = cart.Items[product.Id],
                         Price = product.Price,
@@ -77,7 +75,7 @@ namespace EMarket.Controllers
                         OrderId = newOrder.Id
                     });
                     await db.SaveChangesAsync();
-                    await db.ProductOrders.AddAsync(new ProductOrder()
+                    await db.ProductOrders.AddAsync(new ProductOrder
                     {
                         Count = cart.Items[product.Id],
                         Price = product.Price,

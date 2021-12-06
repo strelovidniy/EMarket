@@ -4,7 +4,7 @@ namespace EMarket.Services
 {
     public class GeolocationService : IGeolocationService
     {
-        private List<string> geolocations = new List<string>()
+        private List<string> geolocations = new List<string>
         {
             "49.62649777359683, 24.009087497652555",
             "49.727541205451956, 23.98638096697053",

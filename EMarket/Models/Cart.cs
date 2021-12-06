@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
-using EMarket.Models;
+﻿using System.Collections.Generic;
 
 namespace Models
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -10,7 +9,6 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
@@ -42,7 +40,7 @@ namespace EMarket.Controllers
                     .FirstOrDefaultAsync(p => p.Email == claims[ClaimTypes.Email]);
                 if (user == null)
                 {
-                    await db.Buyers.AddAsync(new Buyer()
+                    await db.Buyers.AddAsync(new Buyer
                     {
                         Email = claims[ClaimTypes.Email],
                         FirstName = claims[ClaimTypes.GivenName],

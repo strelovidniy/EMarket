@@ -1,5 +1,3 @@
-using System;
-
 namespace EMarket.Models
 {
     public class ErrorViewModel

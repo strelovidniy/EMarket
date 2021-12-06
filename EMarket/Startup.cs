@@ -1,11 +1,12 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System;
 using EMarket.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EMarket
 {
@@ -22,13 +23,13 @@ namespace EMarket
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => 
                 {
-                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                    options.LoginPath = new PathString("/Account/Login");
                     options.LoginPath = "/account/google-signin";
                 })
                 .AddGoogle(options =>
                 {
-                    options.ClientId = "713332156036-thg78s3ild2s5jjfp3i7ngj5de75af7v.apps.googleusercontent.com";
-                    options.ClientSecret = "JEFG0DgH4JKqBk4waXyTioJe";
+                    options.ClientId = "331984789223-5qrp42v3udbgoq0ar764fioi9hqpcekc.apps.googleusercontent.com";
+                    options.ClientSecret = "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";
                 });
             services.AddTransient<ISearchService, SearchService>();
             services.AddControllersWithViews();
@@ -59,7 +60,12 @@ namespace EMarket
             app.UseRouting();
             app.UseSession();
             app.UseAuthorization();
-            app.UseAuthentication();  
+            app.UseAuthentication();
+
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Lax
+            });
 
             app.UseEndpoints(endpoints =>
             {

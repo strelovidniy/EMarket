@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -8,10 +6,8 @@ using EMarket.Models;
 using EMarket.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {
@@ -62,7 +58,7 @@ namespace EMarket.Controllers
         [HttpGet]
         public IActionResult EditSeller()
         {
-            return View(new Seller()
+            return View(new Seller
             {
                 Email = User.FindFirst(u => u.Type == ClaimTypes.Email)?.Value,
                 FirstName = User.FindFirst(u => u.Type == ClaimTypes.GivenName)?.Value,
@@ -109,7 +105,7 @@ namespace EMarket.Controllers
             Product? product = db.Products.Include(p => p.Seller).AsEnumerable()
                 .FirstOrDefault(p => p.Id == id && p.Seller.Email == email);
             if (product == null)
-                return View("Error", new ErrorViewModel() { RequestId = "404 Not Found." });
+                return View("Error", new ErrorViewModel { RequestId = "404 Not Found." });
             return View(product);
         }
 

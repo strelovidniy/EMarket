@@ -1,14 +1,8 @@
-﻿using EMarket.Models;
+﻿using System.Diagnostics;
+using EMarket.Models;
+using EMarket.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using EMarket.Services;
-using EMarket.ViewModels;
-using AppContext = EMarket.Models.AppContext;
 
 namespace EMarket.Controllers
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Windows.Media.SpeechSynthesis;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace DesktopApp
@@ -28,7 +29,7 @@ namespace DesktopApp
             mediaElement.Play();
         }
 
-        private void BackButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             if (HackatonWebView.CanGoBack)
             {
@@ -36,7 +37,7 @@ namespace DesktopApp
             }
         }
 
-        private void ForwardButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void ForwardButton_Click(object sender, RoutedEventArgs e)
         {
             if (HackatonWebView.CanGoForward)
             {
